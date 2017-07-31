@@ -14,10 +14,11 @@ namespace ComputerLocator2
         [STAThread]
         static void Main()
         {
-            
-            var commandExecutor = new commandexecutor.CommandExecutor();
-            commandExecutor.executeCommand("/c %windir%\\System32\\wbem\\WMIC.exe /node:127.0.0.1 bios get serialnumber");
 
+            var oci = new commandexecutor.ObtainComputerInformation();
+
+            oci.getComputerInfo("127.0.0.1");
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

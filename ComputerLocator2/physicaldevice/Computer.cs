@@ -20,5 +20,26 @@ namespace ComputerLocator2.physicaldevice
             this.serialNumber = serialNumber;
             this.model = model; 
         }
+
+        public string getIpAddress()
+        {
+            return ipAddress; 
+        }
+
+        public string getName()
+        {
+            return name; 
+        }
+
+        public string getModel()
+        {
+            return model; 
+        }
+
+        public string getSerialNumber()
+        {
+            return serialNumber; 
+        }        
+
     }
 }
