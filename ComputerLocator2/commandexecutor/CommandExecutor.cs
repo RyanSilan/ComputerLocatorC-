@@ -22,13 +22,15 @@ namespace ComputerLocator2.commandexecutor
 
             process.Start();
 
-            process.StandardOutput.ReadLine();
-            process.StandardOutput.ReadLine(); 
-            string strOutput = process.StandardOutput.ReadLine();
+            //process.StandardOutput.ReadLine();
+            //process.StandardOutput.ReadLine(); 
 
-            System.Diagnostics.Debug.WriteLine(strOutput);
 
-            return strOutput;
+            //string strOutput = process.StandardOutput.ReadLine();
+            //System.Diagnostics.Debug.WriteLine(strOutput);
+
+            
+            return process.StandardOutput;
 
              
         }

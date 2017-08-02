@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +17,38 @@ namespace ComputerLocator2.commandexecutor
         string model = null;
         string serialNumber = null; 
 
-        public void getComputerInfo(string ipAddress)
-        {
+        public ObtainComputerInformation(String ipAddress){
             this.ipAddress = ipAddress;
-            System.Diagnostics.Debug.WriteLine(getSerialNumber(ipAddress)); 
-
+            serialNumber = getSerialNumber(); 
         }
 
-        private string getSerialNumber(string ipAddress)
+       
+        private string getSerialNumber()
         {
             var commandExecutor = new CommandExecutor();
-            string command = cmd + name + serialNumberCommand;
+            string command = cmd + ipAddress + serialNumberCommand;
 
             return commandExecutor.executeCommand(command);
         }
+
+        private string getModel()
+        {
+            var commandExecutor = new CommandExecutor();
+
+            string command = cmd + ipAddress + modelNumberCommand;
+            string commandOutput = commandExecutor.executeCommand(command);
+
+
+            return "test"; 
+
+        }
+
+        private string getName()
+        {
+			var commandExecutor = new CommandExecutor();
+            string command = cmd + ipAddress + nameCommand;
+
+			return commandExecutor.executeCommand(command);
+		}
     }
 }
