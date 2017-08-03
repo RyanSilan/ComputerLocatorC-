@@ -53,6 +53,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="list\ComputerList.cs" />
     <Compile Include="physicaldevice\Computer.cs" />
     <Compile Include="physicaldevice\Printer.cs" />
     <Compile Include="Program.cs" />

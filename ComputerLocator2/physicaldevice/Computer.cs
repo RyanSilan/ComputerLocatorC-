@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComputerLocator2.physicaldevice
 {
-    class Computer
+    public class Computer
     {
         string serialNumber;
         string name;

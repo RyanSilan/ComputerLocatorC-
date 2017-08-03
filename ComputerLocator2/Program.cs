@@ -15,7 +15,8 @@ namespace ComputerLocator2
         static void Main()
         {
 
-            var oci = new commandexecutor.ObtainComputerInformation("127.0.0.1");
+            //var oci = new commandexecutor.ObtainComputerInformation("127.0.0.1");
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

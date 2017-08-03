@@ -8,7 +8,7 @@ namespace ComputerLocator2.commandexecutor
 {
     class CommandExecutor
     {
-        public string executeCommand(String cmdString)
+        public System.IO.StreamReader executeCommand(String cmdString)
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
 
@@ -24,12 +24,10 @@ namespace ComputerLocator2.commandexecutor
 
             //process.StandardOutput.ReadLine();
             //process.StandardOutput.ReadLine(); 
-
-
+            
             //string strOutput = process.StandardOutput.ReadLine();
             //System.Diagnostics.Debug.WriteLine(strOutput);
-
-            
+                        
             return process.StandardOutput;
 
              

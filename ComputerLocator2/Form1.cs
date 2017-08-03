@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComputerLocator2.commandexecutor; 
 
 namespace ComputerLocator2
 {
@@ -20,6 +21,21 @@ namespace ComputerLocator2
         private void Test_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void retrieveInformation_Click(object sender, EventArgs e)
+        {
+            var oci = new ObtainComputerInformation(ipAddressTextBox.Text);                          
         }
     }
 }
