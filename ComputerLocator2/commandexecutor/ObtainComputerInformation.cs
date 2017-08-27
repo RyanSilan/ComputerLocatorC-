@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ComputerLocator2.physicaldevice;
-using ComputerLocator2.list; 
+using ComputerLocator2.list;
+using System.Collections; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -28,13 +29,15 @@ namespace ComputerLocator2.commandexecutor
             Computer computer = new Computer(ipAddress, name, serialNumber, model);
             ComputerList.AddToList(computer);
 
-            /*
-            System.Diagnostics.Debug.WriteLine(serialNumber);
-            System.Diagnostics.Debug.WriteLine(name);
-            System.Diagnostics.Debug.WriteLine(model);
-            System.Diagnostics.Debug.WriteLine(ipAddress);
-            */
+            foreach (Computer computerObj in ComputerList.GetComputerList())
+            {
+                System.Diagnostics.Debug.WriteLine(computerObj.getIpAddress());
+                System.Diagnostics.Debug.WriteLine(computerObj.getModel());
+                System.Diagnostics.Debug.WriteLine(computerObj.getName());
+                System.Diagnostics.Debug.WriteLine(computerObj.getSerialNumber());
+            }
             
+                        
         }
 
        

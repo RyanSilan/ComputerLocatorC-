@@ -11,14 +11,17 @@ namespace ComputerLocator2.list
 {
     public static class ComputerList
     {
-        public static ArrayList computerArrayList = new ArrayList(); 
+        //change to List<Computer> list = new List<Computer>(); 
+        public static List<Computer> computerArrayList = new List<Computer>(); 
+
+        //public static ArrayList computerArrayList = new ArrayList(); 
 
         public static void AddToList(Computer computer)
         {
             computerArrayList.Add(computer); 
         }
 
-        public static ArrayList GetComputerList()
+        public static List<Computer> GetComputerList()
         {
             return computerArrayList;
         }

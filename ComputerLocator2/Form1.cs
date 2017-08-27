@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ComputerLocator2.commandexecutor; 
+using ComputerLocator2.commandexecutor;
+using ComputerLocator2.list;
+using ComputerLocator2.physicaldevice; 
+using System.Collections; 
 
 namespace ComputerLocator2
 {
@@ -35,7 +38,26 @@ namespace ComputerLocator2
 
         private void retrieveInformation_Click(object sender, EventArgs e)
         {
-            var oci = new ObtainComputerInformation(ipAddressTextBox.Text);                          
+            //clearTextBoxes();
+
+        
+            ObtainComputerInformation oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+            List<Computer> computerList = ComputerList.GetComputerList();
+
+
+            Console.Write("Capacity: " + computerList.Count);
+            
+            computerNameTextBox.Text = computerList[computerList.Count-1].getName();
+            computerModelTextBox.Text = computerList[computerList.Count-1].getModel();
+            computerSNTextBox.Text = computerList[computerList.Count-1].getSerialNumber();
+        }
+
+        //Not working, need to investigate. 
+        private void clearTextBoxes()
+        {
+            computerNameTextBox.Text = null;
+            computerModelTextBox.Text = "test";
+            computerSNTextBox.Text = " ";
         }
     }
 }
