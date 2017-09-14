@@ -12,12 +12,11 @@ namespace ComputerLocator2.commandexecutor
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
 
+            //Hides CMD window. 
+            process.StartInfo.CreateNoWindow = true; 
             process.StartInfo.FileName = "cmd.exe";
-
-            process.StartInfo.Arguments = cmdString; 
-
-            process.StartInfo.UseShellExecute = false; 
-
+            process.StartInfo.Arguments = cmdString;
+            process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
 
             process.Start();

@@ -11,9 +11,9 @@ namespace ComputerLocator2.list
 {
     public static class ComputerList
     {
-        //change to List<Computer> list = new List<Computer>(); 
         public static List<Computer> computerArrayList = new List<Computer>(); 
 
+        //Old way
         //public static ArrayList computerArrayList = new ArrayList(); 
 
         public static void AddToList(Computer computer)

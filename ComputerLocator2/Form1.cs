@@ -14,9 +14,9 @@ using System.Collections;
 
 namespace ComputerLocator2
 {
-    public partial class Form1 : Form
+    public partial class mainFrame : Form
     {
-        public Form1()
+        public mainFrame()
         {
             InitializeComponent();
         }
@@ -38,6 +38,7 @@ namespace ComputerLocator2
 
         private void retrieveInformation_Click(object sender, EventArgs e)
         {
+            //Not currenlty working. 
             //clearTextBoxes();
 
         
@@ -50,14 +51,21 @@ namespace ComputerLocator2
             computerNameTextBox.Text = computerList[computerList.Count-1].getName();
             computerModelTextBox.Text = computerList[computerList.Count-1].getModel();
             computerSNTextBox.Text = computerList[computerList.Count-1].getSerialNumber();
+
+            populateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].getName(), computerList[computerList.Count - 1].getModel(), computerList[computerList.Count - 1].getSerialNumber()); 
         }
 
-        //Not working, need to investigate. 
+        //Not working, need to investigate.  
         private void clearTextBoxes()
         {
             computerNameTextBox.Text = null;
             computerModelTextBox.Text = "test";
             computerSNTextBox.Text = " ";
+        }
+
+        private void populateTable(String ipAddress, String name, String model, String sn)
+        {
+            computerTable.Rows.Add(ipAddress, name, model, sn); 
         }
     }
 }

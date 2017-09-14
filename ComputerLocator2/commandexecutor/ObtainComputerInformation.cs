@@ -52,7 +52,6 @@ namespace ComputerLocator2.commandexecutor
             commandOutput.ReadLine();
             return commandOutput.ReadLine();
 
-
         }
 
         private string getModel()
