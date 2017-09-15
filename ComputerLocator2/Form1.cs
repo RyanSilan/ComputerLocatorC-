@@ -10,15 +10,22 @@ using System.Windows.Forms;
 using ComputerLocator2.commandexecutor;
 using ComputerLocator2.list;
 using ComputerLocator2.physicaldevice; 
-using System.Collections; 
+using System.Collections;
+using ComputerLocator2.filereader; 
 
 namespace ComputerLocator2
 {
     public partial class mainFrame : Form
     {
+        
         public mainFrame()
         {
             InitializeComponent();
+
+            FileReader fileReader = new FileReader();
+            fileReader.readFile();
+            populateTableFromComputerList();
+            
         }
 
         private void Test_Click(object sender, EventArgs e)
@@ -67,5 +74,17 @@ namespace ComputerLocator2
         {
             computerTable.Rows.Add(ipAddress, name, model, sn); 
         }
+
+        private void populateTableFromComputerList()
+        {
+            foreach (Computer computerObj in ComputerList.GetComputerList())
+            {
+                if (computerObj.getSerialNumber() != null)
+                { 
+                    computerTable.Rows.Add(computerObj.getIpAddress(), computerObj.getName(), computerObj.getModel(), computerObj.getSerialNumber());
+                }
+            }
+        }
+        
     }
 }

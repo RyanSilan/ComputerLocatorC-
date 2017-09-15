@@ -25,5 +25,16 @@ namespace ComputerLocator2.list
         {
             return computerArrayList;
         }
+
+        public static void printList()
+        {
+            foreach (Computer computerObj in computerArrayList)
+            {
+                Console.WriteLine("IP Address: " + computerObj.getIpAddress());
+                Console.WriteLine("Name: " + computerObj.getName());
+                Console.WriteLine("Model: " + computerObj.getModel());
+                Console.WriteLine("Serial Number: " + computerObj.getSerialNumber());
+            }
+        }
     }
 }

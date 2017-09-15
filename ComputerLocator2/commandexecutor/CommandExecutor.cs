@@ -18,9 +18,12 @@ namespace ComputerLocator2.commandexecutor
             process.StartInfo.Arguments = cmdString;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
+            
 
             process.Start();
 
+                      
+            
             //process.StandardOutput.ReadLine();
             //process.StandardOutput.ReadLine(); 
             
