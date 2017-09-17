@@ -17,14 +17,24 @@ namespace ComputerLocator2
 {
     public partial class mainFrame : Form
     {
+        private BackgroundWorker bw; 
         
         public mainFrame()
         {
             InitializeComponent();
+            ComputerLocator2.TableUpdater.computerTable = this.computerTable;  
+           
 
-            FileReader fileReader = new FileReader();
-            fileReader.readFile();
-            populateTableFromComputerList();
+            this.bw = new BackgroundWorker();
+            this.bw.DoWork += new DoWorkEventHandler(bwReadFile);
+            this.bw.ProgressChanged += new ProgressChangedEventHandler(bwProgressChanged);
+            this.bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwCompleted);
+            this.bw.WorkerReportsProgress = true;
+
+            bw.RunWorkerAsync();
+
+            
+            
             
         }
 
@@ -59,7 +69,8 @@ namespace ComputerLocator2
             computerModelTextBox.Text = computerList[computerList.Count-1].getModel();
             computerSNTextBox.Text = computerList[computerList.Count-1].getSerialNumber();
 
-            populateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].getName(), computerList[computerList.Count - 1].getModel(), computerList[computerList.Count - 1].getSerialNumber()); 
+
+            TableUpdater.populateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].getName(), computerList[computerList.Count - 1].getModel(), computerList[computerList.Count - 1].getSerialNumber()); 
         }
 
         //Not working, need to investigate.  
@@ -70,10 +81,12 @@ namespace ComputerLocator2
             computerSNTextBox.Text = " ";
         }
 
-        private void populateTable(String ipAddress, String name, String model, String sn)
+        /*
+        public static void populateTable(String ipAddress, String name, String model, String sn)
         {
-            computerTable.Rows.Add(ipAddress, name, model, sn); 
+            computerTable.Rows.Add(ipAddress, name, model, sn);
         }
+        
 
         private void populateTableFromComputerList()
         {
@@ -85,6 +98,27 @@ namespace ComputerLocator2
                 }
             }
         }
+        */
         
+        private void bwReadFile(object sender, DoWorkEventArgs e)
+        {
+            FileReader fileReader = new FileReader();
+
+            fileReader.readFile();
+
+        }
+
+        private void bwProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Console.WriteLine("Progress: " + e.ProgressPercentage.ToString()); 
+        }
+
+        private void bwCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //Console.WriteLine("BackgroundWorker completed: " + e.Result.ToString());
+            //populateTableFromComputerList(); 
+            Console.WriteLine("Done");
+            TableUpdater.populateTableFromComputerList(); 
+        }
     }
 }

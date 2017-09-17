@@ -59,49 +59,55 @@
             this.panel1.Controls.Add(this.computerServiceTagLabel);
             this.panel1.Controls.Add(this.computerModelLabel);
             this.panel1.Controls.Add(this.ipAddressLabel);
-            this.panel1.Location = new System.Drawing.Point(97, 90);
+            this.panel1.Location = new System.Drawing.Point(129, 112);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(466, 262);
+            this.panel1.Size = new System.Drawing.Size(621, 328);
             this.panel1.TabIndex = 0;
             // 
             // computerSNTextBox
             // 
-            this.computerSNTextBox.Location = new System.Drawing.Point(235, 194);
+            this.computerSNTextBox.Location = new System.Drawing.Point(313, 242);
+            this.computerSNTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.computerSNTextBox.Name = "computerSNTextBox";
             this.computerSNTextBox.ReadOnly = true;
-            this.computerSNTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerSNTextBox.Size = new System.Drawing.Size(243, 31);
             this.computerSNTextBox.TabIndex = 4;
             // 
             // computerModelTextBox
             // 
-            this.computerModelTextBox.Location = new System.Drawing.Point(235, 162);
+            this.computerModelTextBox.Location = new System.Drawing.Point(313, 202);
+            this.computerModelTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.computerModelTextBox.Name = "computerModelTextBox";
             this.computerModelTextBox.ReadOnly = true;
-            this.computerModelTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerModelTextBox.Size = new System.Drawing.Size(243, 31);
             this.computerModelTextBox.TabIndex = 4;
             // 
             // computerNameTextBox
             // 
-            this.computerNameTextBox.Location = new System.Drawing.Point(235, 131);
+            this.computerNameTextBox.Location = new System.Drawing.Point(313, 164);
+            this.computerNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.computerNameTextBox.Name = "computerNameTextBox";
             this.computerNameTextBox.ReadOnly = true;
-            this.computerNameTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerNameTextBox.Size = new System.Drawing.Size(243, 31);
             this.computerNameTextBox.TabIndex = 4;
             // 
             // ipAddressTextBox
             // 
             this.ipAddressTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.ipAddressTextBox.Location = new System.Drawing.Point(235, 36);
+            this.ipAddressTextBox.Location = new System.Drawing.Point(313, 45);
+            this.ipAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ipAddressTextBox.Name = "ipAddressTextBox";
-            this.ipAddressTextBox.Size = new System.Drawing.Size(183, 26);
+            this.ipAddressTextBox.Size = new System.Drawing.Size(243, 31);
             this.ipAddressTextBox.TabIndex = 4;
             this.ipAddressTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // retrieveInformationButton
             // 
-            this.retrieveInformationButton.Location = new System.Drawing.Point(235, 78);
+            this.retrieveInformationButton.Location = new System.Drawing.Point(313, 98);
+            this.retrieveInformationButton.Margin = new System.Windows.Forms.Padding(4);
             this.retrieveInformationButton.Name = "retrieveInformationButton";
-            this.retrieveInformationButton.Size = new System.Drawing.Size(183, 35);
+            this.retrieveInformationButton.Size = new System.Drawing.Size(244, 44);
             this.retrieveInformationButton.TabIndex = 3;
             this.retrieveInformationButton.Text = "Retrieve Information";
             this.retrieveInformationButton.UseVisualStyleBackColor = true;
@@ -110,36 +116,40 @@
             // computerNameLabel
             // 
             this.computerNameLabel.AutoSize = true;
-            this.computerNameLabel.Location = new System.Drawing.Point(82, 134);
+            this.computerNameLabel.Location = new System.Drawing.Point(109, 168);
+            this.computerNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.computerNameLabel.Name = "computerNameLabel";
-            this.computerNameLabel.Size = new System.Drawing.Size(129, 20);
+            this.computerNameLabel.Size = new System.Drawing.Size(179, 26);
             this.computerNameLabel.TabIndex = 1;
             this.computerNameLabel.Text = "Computer Name:";
             // 
             // computerServiceTagLabel
             // 
             this.computerServiceTagLabel.AutoSize = true;
-            this.computerServiceTagLabel.Location = new System.Drawing.Point(41, 197);
+            this.computerServiceTagLabel.Location = new System.Drawing.Point(55, 246);
+            this.computerServiceTagLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.computerServiceTagLabel.Name = "computerServiceTagLabel";
-            this.computerServiceTagLabel.Size = new System.Drawing.Size(170, 20);
+            this.computerServiceTagLabel.Size = new System.Drawing.Size(235, 26);
             this.computerServiceTagLabel.TabIndex = 1;
             this.computerServiceTagLabel.Text = "Computer Service Tag:";
             // 
             // computerModelLabel
             // 
             this.computerModelLabel.AutoSize = true;
-            this.computerModelLabel.Location = new System.Drawing.Point(81, 165);
+            this.computerModelLabel.Location = new System.Drawing.Point(108, 206);
+            this.computerModelLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.computerModelLabel.Name = "computerModelLabel";
-            this.computerModelLabel.Size = new System.Drawing.Size(130, 20);
+            this.computerModelLabel.Size = new System.Drawing.Size(179, 26);
             this.computerModelLabel.TabIndex = 1;
             this.computerModelLabel.Text = "Computer Model:";
             // 
             // ipAddressLabel
             // 
             this.ipAddressLabel.AutoSize = true;
-            this.ipAddressLabel.Location = new System.Drawing.Point(120, 39);
+            this.ipAddressLabel.Location = new System.Drawing.Point(160, 49);
+            this.ipAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ipAddressLabel.Name = "ipAddressLabel";
-            this.ipAddressLabel.Size = new System.Drawing.Size(91, 20);
+            this.ipAddressLabel.Size = new System.Drawing.Size(125, 26);
             this.ipAddressLabel.TabIndex = 1;
             this.ipAddressLabel.Text = "IP Address:";
             // 
@@ -154,11 +164,11 @@
             this.ComputerName,
             this.Model,
             this.SerialNumber});
-            this.computerTable.Location = new System.Drawing.Point(638, 90);
-            this.computerTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.computerTable.Location = new System.Drawing.Point(851, 112);
+            this.computerTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.computerTable.Name = "computerTable";
             this.computerTable.RowTemplate.Height = 33;
-            this.computerTable.Size = new System.Drawing.Size(516, 262);
+            this.computerTable.Size = new System.Drawing.Size(688, 328);
             this.computerTable.TabIndex = 3;
             // 
             // IPAddress
@@ -166,36 +176,37 @@
             this.IPAddress.HeaderText = "IP";
             this.IPAddress.Name = "IPAddress";
             this.IPAddress.ReadOnly = true;
-            this.IPAddress.Width = 60;
+            this.IPAddress.Width = 78;
             // 
             // ComputerName
             // 
             this.ComputerName.HeaderText = "Name";
             this.ComputerName.Name = "ComputerName";
             this.ComputerName.ReadOnly = true;
-            this.ComputerName.Width = 87;
+            this.ComputerName.Width = 116;
             // 
             // Model
             // 
             this.Model.HeaderText = "Model";
             this.Model.Name = "Model";
             this.Model.ReadOnly = true;
-            this.Model.Width = 88;
+            this.Model.Width = 116;
             // 
             // SerialNumber
             // 
             this.SerialNumber.HeaderText = "SN";
             this.SerialNumber.Name = "SerialNumber";
             this.SerialNumber.ReadOnly = true;
-            this.SerialNumber.Width = 67;
+            this.SerialNumber.Width = 88;
             // 
             // mainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 745);
+            this.ClientSize = new System.Drawing.Size(1637, 931);
             this.Controls.Add(this.computerTable);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mainFrame";
             this.Text = "Computer Locator";
             this.panel1.ResumeLayout(false);
@@ -217,11 +228,11 @@
         private System.Windows.Forms.TextBox computerSNTextBox;
         private System.Windows.Forms.TextBox computerModelTextBox;
         private System.Windows.Forms.TextBox computerNameTextBox;
-        private System.Windows.Forms.DataGridView computerTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ComputerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Model;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
+        public System.Windows.Forms.DataGridView computerTable;
     }
 }
 

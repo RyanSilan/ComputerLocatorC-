@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TableUpdater.cs" />
     <Compile Include="commandexecutor\CommandExecutor.cs" />
     <Compile Include="commandexecutor\ObtainComputerInformation.cs" />
     <Compile Include="filereader\FileReader.cs" />

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using ComputerLocator2.physicaldevice;
 using ComputerLocator2.list;
 using System.Collections;
-using System.Threading; 
+using System.Threading;
+using ComputerLocator2; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -50,8 +51,12 @@ namespace ComputerLocator2.commandexecutor
 
                 Task.WaitAll(tasks.ToArray());
 
+                TableUpdater.populateTable(ipAddress, name, model, serialNumber); 
+
                 Computer computer = new Computer(ipAddress, name, serialNumber, model);
                 ComputerList.AddToList(computer);
+                
+               
             }
         }
 
