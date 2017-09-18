@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using ComputerLocator2.commandexecutor;
-using ComputerLocator2.list; 
+using ComputerLocator2.list;
+using System.ComponentModel; 
 
 namespace ComputerLocator2.filereader
 {
@@ -14,11 +15,33 @@ namespace ComputerLocator2.filereader
         System.IO.StreamReader file = new System.IO.StreamReader("c:\\printerlist.txt");
         List<string> ipAddressList = new List<string>();
         String line;
+        BackgroundWorker bw; 
    
-
-        public void readFile()
+        public FileReader()
         {
-            const int maxThreads = 100;
+            this.bw = new BackgroundWorker();
+            this.bw.DoWork += new DoWorkEventHandler(readFile);
+            this.bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+            this.bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Completed);
+            this.bw.WorkerReportsProgress = true;
+
+            bw.RunWorkerAsync(); 
+        }
+
+        private void Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Console.WriteLine("Done");
+            TableUpdater.populateTableFromComputerList();
+        }
+
+        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Console.WriteLine("Progress: " + e.ProgressPercentage.ToString());
+        }
+
+        private void readFile(object sender, DoWorkEventArgs e)
+        {
+            //const int maxThreads = 100;
             int computerCount = 0; 
             
             

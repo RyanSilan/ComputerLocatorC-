@@ -22,9 +22,10 @@ namespace ComputerLocator2
         public mainFrame()
         {
             InitializeComponent();
-            ComputerLocator2.TableUpdater.computerTable = this.computerTable;  
-           
+            ComputerLocator2.TableUpdater.computerTable = this.computerTable;
 
+            FileReader fileReader = new FileReader(); 
+            /*
             this.bw = new BackgroundWorker();
             this.bw.DoWork += new DoWorkEventHandler(bwReadFile);
             this.bw.ProgressChanged += new ProgressChangedEventHandler(bwProgressChanged);
@@ -32,7 +33,7 @@ namespace ComputerLocator2
             this.bw.WorkerReportsProgress = true;
 
             bw.RunWorkerAsync();
-
+            */
             
             
             
@@ -100,6 +101,7 @@ namespace ComputerLocator2
         }
         */
         
+            /*
         private void bwReadFile(object sender, DoWorkEventArgs e)
         {
             FileReader fileReader = new FileReader();
@@ -120,5 +122,6 @@ namespace ComputerLocator2
             Console.WriteLine("Done");
             TableUpdater.populateTableFromComputerList(); 
         }
+        */
     }
 }
