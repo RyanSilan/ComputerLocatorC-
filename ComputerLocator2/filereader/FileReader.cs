@@ -20,7 +20,7 @@ namespace ComputerLocator2.filereader
         public FileReader()
         {
             this.bw = new BackgroundWorker();
-            this.bw.DoWork += new DoWorkEventHandler(readFile);
+            this.bw.DoWork += new DoWorkEventHandler(ReadFile);
             this.bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
             this.bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Completed);
             this.bw.WorkerReportsProgress = true;
@@ -31,7 +31,7 @@ namespace ComputerLocator2.filereader
         private void Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             Console.WriteLine("Done");
-            TableUpdater.populateTableFromComputerList();
+            TableUpdater.PopulateTableFromComputerList();
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -39,7 +39,7 @@ namespace ComputerLocator2.filereader
             Console.WriteLine("Progress: " + e.ProgressPercentage.ToString());
         }
 
-        private void readFile(object sender, DoWorkEventArgs e)
+        private void ReadFile(object sender, DoWorkEventArgs e)
         {
             //const int maxThreads = 100;
             int computerCount = 0; 
@@ -71,7 +71,7 @@ namespace ComputerLocator2.filereader
             });
          
             
-            ComputerList.printList();
+            ComputerList.PrintList();
             Console.WriteLine("All operations have completed.");
 
 

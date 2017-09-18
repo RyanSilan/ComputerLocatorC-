@@ -21,22 +21,22 @@ namespace ComputerLocator2.physicaldevice
             this.model = model; 
         }
 
-        public string getIpAddress()
+        public string GetIpAddress()
         {
             return ipAddress; 
         }
 
-        public string getName()
+        public string GetName()
         {
             return name; 
         }
 
-        public string getModel()
+        public string GetModel()
         {
             return model; 
         }
 
-        public string getSerialNumber()
+        public string GetSerialNumber()
         {
             return serialNumber; 
         }        

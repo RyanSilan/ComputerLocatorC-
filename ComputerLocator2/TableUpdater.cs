@@ -15,11 +15,11 @@ namespace ComputerLocator2
 
         delegate void SetCallBackText(String ipAddress, String name, String model, String sn); 
 
-        public static void populateTable(String ipAddress, String name, String model, String sn)
+        public static void PopulateTable(String ipAddress, String name, String model, String sn)
         {
             if (computerTable.InvokeRequired)
             {
-                SetCallBackText d = new SetCallBackText(populateTable);
+                SetCallBackText d = new SetCallBackText(PopulateTable);
                 computerTable.Invoke(d, new object[] { ipAddress, name, model, sn });
             }
             else
@@ -28,13 +28,13 @@ namespace ComputerLocator2
             }
         }
 
-        public static void populateTableFromComputerList()
+        public static void PopulateTableFromComputerList()
         {
             foreach (Computer computerObj in ComputerList.GetComputerList())
             {
-                if (computerObj.getSerialNumber() != null)
+                if (computerObj.GetSerialNumber() != null)
                 {
-                    computerTable.Rows.Add(computerObj.getIpAddress(), computerObj.getName(), computerObj.getModel(), computerObj.getSerialNumber());
+                    computerTable.Rows.Add(computerObj.GetIpAddress(), computerObj.GetName(), computerObj.GetModel(), computerObj.GetSerialNumber());
                 }
             }
         }

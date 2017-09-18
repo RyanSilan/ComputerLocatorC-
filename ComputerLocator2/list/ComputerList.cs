@@ -26,14 +26,14 @@ namespace ComputerLocator2.list
             return computerArrayList;
         }
 
-        public static void printList()
+        public static void PrintList()
         {
             foreach (Computer computerObj in computerArrayList)
             {
-                Console.WriteLine("IP Address: " + computerObj.getIpAddress());
-                Console.WriteLine("Name: " + computerObj.getName());
-                Console.WriteLine("Model: " + computerObj.getModel());
-                Console.WriteLine("Serial Number: " + computerObj.getSerialNumber());
+                Console.WriteLine("IP Address: " + computerObj.GetIpAddress());
+                Console.WriteLine("Name: " + computerObj.GetName());
+                Console.WriteLine("Model: " + computerObj.GetModel());
+                Console.WriteLine("Serial Number: " + computerObj.GetSerialNumber());
             }
         }
     }

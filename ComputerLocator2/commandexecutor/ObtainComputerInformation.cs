@@ -26,32 +26,32 @@ namespace ComputerLocator2.commandexecutor
         public ObtainComputerInformation(String ipAddress){
 
             this.ipAddress = ipAddress; 
-            getAllComputerInfo(ipAddress);            
+            GetAllComputerInfo(ipAddress);            
                         
         }
 
-        public void getAllComputerInfo(String ipAddress)
+        public void GetAllComputerInfo(String ipAddress)
         {
             this.ipAddress = ipAddress;
             Console.WriteLine("This is the IP: " + ipAddress); 
             List<Task> tasks = new List<Task>(); 
 
-            Task task = Task.Factory.StartNew(() => serialNumber = getSerialNumber());
+            Task task = Task.Factory.StartNew(() => serialNumber = GetSerialNumber());
             tasks.Add(task);
             //task.Wait(2000);
             task.Wait(); 
 
             if (serialNumber.Equals("") == false)
             {
-                Task taskTwo = Task.Factory.StartNew(() => name = getName());
-                Task taskThree = Task.Factory.StartNew(() => model = getModel());
+                Task taskTwo = Task.Factory.StartNew(() => name = GetName());
+                Task taskThree = Task.Factory.StartNew(() => model = GetModel());
                 tasks.Add(taskTwo);
                 tasks.Add(taskThree);
 
 
                 Task.WaitAll(tasks.ToArray());
 
-                TableUpdater.populateTable(ipAddress, name, model, serialNumber); 
+                TableUpdater.PopulateTable(ipAddress, name, model, serialNumber); 
 
                 Computer computer = new Computer(ipAddress, name, serialNumber, model);
                 ComputerList.AddToList(computer);
@@ -61,11 +61,11 @@ namespace ComputerLocator2.commandexecutor
         }
 
        
-        private string getSerialNumber()
+        private string GetSerialNumber()
         {
             CommandExecutor commandExecutor = new CommandExecutor();
             string command = cmd + ipAddress + serialNumberCommand;
-            System.IO.StreamReader commandOutput = commandExecutor.executeCommand(command);
+            System.IO.StreamReader commandOutput = commandExecutor.ExecuteCommand(command);
             
 
             //The data needed is on the third line in the StreamReader. 
@@ -75,11 +75,11 @@ namespace ComputerLocator2.commandexecutor
 
         }
 
-        private string getModel()
+        private string GetModel()
         {
             CommandExecutor commandExecutor = new CommandExecutor();
             string command = cmd + ipAddress + modelNumberCommand;
-            System.IO.StreamReader commandOutput = commandExecutor.executeCommand(command);
+            System.IO.StreamReader commandOutput = commandExecutor.ExecuteCommand(command);
 
             //The data needed is on the third line in the StreamReader. 
             commandOutput.ReadLine();
@@ -87,11 +87,11 @@ namespace ComputerLocator2.commandexecutor
             return commandOutput.ReadLine();
         }
 
-        private string getName()
+        private string GetName()
         {
 			CommandExecutor commandExecutor = new CommandExecutor();
             string command = cmd + ipAddress + nameCommand;
-            System.IO.StreamReader commandOutput = commandExecutor.executeCommand(command);
+            System.IO.StreamReader commandOutput = commandExecutor.ExecuteCommand(command);
 
             //The data needed is on the third line in the StreamReader. 
             commandOutput.ReadLine();

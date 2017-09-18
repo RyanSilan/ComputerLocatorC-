@@ -8,7 +8,7 @@ namespace ComputerLocator2.commandexecutor
 {
     class CommandExecutor
     {
-        public System.IO.StreamReader executeCommand(String cmdString)
+        public System.IO.StreamReader ExecuteCommand(String cmdString)
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
 

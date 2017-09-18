@@ -66,12 +66,12 @@ namespace ComputerLocator2
 
             Console.Write("Capacity: " + computerList.Count);
             
-            computerNameTextBox.Text = computerList[computerList.Count-1].getName();
-            computerModelTextBox.Text = computerList[computerList.Count-1].getModel();
-            computerSNTextBox.Text = computerList[computerList.Count-1].getSerialNumber();
+            computerNameTextBox.Text = computerList[computerList.Count-1].GetName();
+            computerModelTextBox.Text = computerList[computerList.Count-1].GetModel();
+            computerSNTextBox.Text = computerList[computerList.Count-1].GetSerialNumber();
 
 
-            TableUpdater.populateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].getName(), computerList[computerList.Count - 1].getModel(), computerList[computerList.Count - 1].getSerialNumber()); 
+            TableUpdater.PopulateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].GetName(), computerList[computerList.Count - 1].GetModel(), computerList[computerList.Count - 1].GetSerialNumber()); 
         }
 
         //Not working, need to investigate.  
