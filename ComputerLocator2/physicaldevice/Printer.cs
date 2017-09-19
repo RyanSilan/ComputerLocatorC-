@@ -10,8 +10,8 @@ namespace ComputerLocator2.physicaldevice
     {
         string name;
         string ipAddress;
-        string manu;
-        string model; 
+        //string manu;
+        //string model; 
 
         public Printer(string ipAddress, string name)
         {

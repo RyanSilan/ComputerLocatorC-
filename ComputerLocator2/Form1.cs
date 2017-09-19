@@ -1,44 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComputerLocator2.commandexecutor;
 using ComputerLocator2.list;
 using ComputerLocator2.physicaldevice; 
-using System.Collections;
 using ComputerLocator2.filereader; 
 
 namespace ComputerLocator2
 {
-    public partial class mainFrame : Form
+    public partial class MainFrame : Form
     {
-        private BackgroundWorker bw; 
         
-        public mainFrame()
+        public MainFrame()
         {
             InitializeComponent();
-            ComputerLocator2.TableUpdater.computerTable = this.computerTable;
-
-            FileReader fileReader = new FileReader(); 
-            /*
-            this.bw = new BackgroundWorker();
-            this.bw.DoWork += new DoWorkEventHandler(bwReadFile);
-            this.bw.ProgressChanged += new ProgressChangedEventHandler(bwProgressChanged);
-            this.bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwCompleted);
-            this.bw.WorkerReportsProgress = true;
-
-            bw.RunWorkerAsync();
-            */
-            
-            
-            
+            TableUpdater.computerTable = computerTable;              
         }
-
+        
         private void Test_Click(object sender, EventArgs e)
         {
 
@@ -53,75 +31,59 @@ namespace ComputerLocator2
         {
            
         }
-
+        
         private void retrieveInformation_Click(object sender, EventArgs e)
         {
             //Not currenlty working. 
             //clearTextBoxes();
 
-        
-            ObtainComputerInformation oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+
+            ObtainComputerInformation oci;
             List<Computer> computerList = ComputerList.GetComputerList();
 
+        
+            if (ipAddressTextBox.Text.Equals(""))
+            {
+                ipAddressTextBox.Text = "127.0.0.1"; 
+                oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+            }
+            else
+            {
+                oci = new ObtainComputerInformation(ipAddressTextBox.Text); 
+            }
 
-            Console.Write("Capacity: " + computerList.Count);
+            
+
+            Console.WriteLine("Capacity: " + computerList.Count);
             
             computerNameTextBox.Text = computerList[computerList.Count-1].GetName();
             computerModelTextBox.Text = computerList[computerList.Count-1].GetModel();
             computerSNTextBox.Text = computerList[computerList.Count-1].GetSerialNumber();
-
-
-            TableUpdater.PopulateTable(ipAddressTextBox.Text, computerList[computerList.Count - 1].GetName(), computerList[computerList.Count - 1].GetModel(), computerList[computerList.Count - 1].GetSerialNumber()); 
+            
         }
 
         //Not working, need to investigate.  
-        private void clearTextBoxes()
+        private void ClearTextBoxes()
         {
             computerNameTextBox.Text = null;
             computerModelTextBox.Text = "test";
             computerSNTextBox.Text = " ";
         }
 
-        /*
-        public static void populateTable(String ipAddress, String name, String model, String sn)
+        private void ipComputerLookup_Click(object sender, EventArgs e)
         {
-            computerTable.Rows.Add(ipAddress, name, model, sn);
+            massLookupPanel.Hide(); 
         }
-        
 
-        private void populateTableFromComputerList()
-        {
-            foreach (Computer computerObj in ComputerList.GetComputerList())
-            {
-                if (computerObj.getSerialNumber() != null)
-                { 
-                    computerTable.Rows.Add(computerObj.getIpAddress(), computerObj.getName(), computerObj.getModel(), computerObj.getSerialNumber());
-                }
-            }
-        }
-        */
-        
-            /*
-        private void bwReadFile(object sender, DoWorkEventArgs e)
+        private void MassLookupButton_Click(object sender, EventArgs e)
         {
             FileReader fileReader = new FileReader();
 
-            fileReader.readFile();
-
         }
 
-        private void bwProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void TextFileLookup_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Progress: " + e.ProgressPercentage.ToString()); 
+            massLookupPanel.Show(); 
         }
-
-        private void bwCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //Console.WriteLine("BackgroundWorker completed: " + e.Result.ToString());
-            //populateTableFromComputerList(); 
-            Console.WriteLine("Done");
-            TableUpdater.populateTableFromComputerList(); 
-        }
-        */
     }
 }
