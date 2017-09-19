@@ -10,7 +10,9 @@ namespace ComputerLocator2
 {
     public partial class MainFrame : Form
     {
-        
+
+        private string fileName = null; 
+
         public MainFrame()
         {
             InitializeComponent();
@@ -77,13 +79,40 @@ namespace ComputerLocator2
 
         private void MassLookupButton_Click(object sender, EventArgs e)
         {
-            FileReader fileReader = new FileReader();
+            FileReader fileReader; 
+            try
+            {
+                fileReader = new FileReader(massLookupProgressBar, fileName);
+            }
+            catch (ArgumentNullException)
+            {
+                openFileDialog1.ShowDialog();
+                fileName = openFileDialog1.FileName;
+                fileReader = new FileReader(massLookupProgressBar, fileName);
+            }
+
+            
 
         }
 
         private void TextFileLookup_Click(object sender, EventArgs e)
         {
             massLookupPanel.Show(); 
+        }
+
+        public void SetProgress(int progress)
+        {
+            massLookupProgressBar.Value = progress; 
+        }
+
+        private void openFileButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                
+                //MessageBox.Show(openFileDialog1.FileName);
+                fileName = openFileDialog1.FileName; 
+            }
         }
     }
 }

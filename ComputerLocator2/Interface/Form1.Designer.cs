@@ -1,6 +1,6 @@
 ﻿namespace ComputerLocator2
 {
-    partial class MainFrame
+    partial class mainFrame
     {
         /// <summary>
         /// Required designer variable.
@@ -43,18 +43,8 @@
             this.ComputerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.TextFileLookup = new System.Windows.Forms.Button();
-            this.ipComputerLookup = new System.Windows.Forms.Button();
-            this.massLookupPanel = new System.Windows.Forms.Panel();
-            this.MassLookupButton = new System.Windows.Forms.Button();
-            this.massLookupProgressBar = new System.Windows.Forms.ProgressBar();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.massLookupPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,7 +59,7 @@
             this.panel1.Controls.Add(this.computerServiceTagLabel);
             this.panel1.Controls.Add(this.computerModelLabel);
             this.panel1.Controls.Add(this.ipAddressLabel);
-            this.panel1.Location = new System.Drawing.Point(472, 102);
+            this.panel1.Location = new System.Drawing.Point(367, 112);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(466, 262);
             this.panel1.TabIndex = 0;
@@ -164,11 +154,12 @@
             this.ComputerName,
             this.Model,
             this.SerialNumber});
-            this.computerTable.Location = new System.Drawing.Point(151, 503);
+            this.computerTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.computerTable.Location = new System.Drawing.Point(0, 483);
             this.computerTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.computerTable.Name = "computerTable";
             this.computerTable.RowTemplate.Height = 33;
-            this.computerTable.Size = new System.Drawing.Size(1077, 242);
+            this.computerTable.Size = new System.Drawing.Size(1228, 262);
             this.computerTable.TabIndex = 3;
             // 
             // IPAddress
@@ -195,100 +186,18 @@
             this.SerialNumber.Name = "SerialNumber";
             this.SerialNumber.ReadOnly = true;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel2.Controls.Add(this.TextFileLookup);
-            this.panel2.Controls.Add(this.ipComputerLookup);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 745);
-            this.panel2.TabIndex = 4;
-            // 
-            // TextFileLookup
-            // 
-            this.TextFileLookup.Location = new System.Drawing.Point(9, 206);
-            this.TextFileLookup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.TextFileLookup.Name = "TextFileLookup";
-            this.TextFileLookup.Size = new System.Drawing.Size(128, 61);
-            this.TextFileLookup.TabIndex = 5;
-            this.TextFileLookup.Text = "Lookup by Text File";
-            this.TextFileLookup.UseVisualStyleBackColor = true;
-            this.TextFileLookup.Click += new System.EventHandler(this.TextFileLookup_Click);
-            // 
-            // ipComputerLookup
-            // 
-            this.ipComputerLookup.Location = new System.Drawing.Point(9, 121);
-            this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ipComputerLookup.Name = "ipComputerLookup";
-            this.ipComputerLookup.Size = new System.Drawing.Size(128, 60);
-            this.ipComputerLookup.TabIndex = 5;
-            this.ipComputerLookup.Text = "Lookup by IP";
-            this.ipComputerLookup.UseVisualStyleBackColor = true;
-            this.ipComputerLookup.Click += new System.EventHandler(this.ipComputerLookup_Click);
-            // 
-            // massLookupPanel
-            // 
-            this.massLookupPanel.Controls.Add(this.openFileButton);
-            this.massLookupPanel.Controls.Add(this.massLookupProgressBar);
-            this.massLookupPanel.Controls.Add(this.MassLookupButton);
-            this.massLookupPanel.Location = new System.Drawing.Point(151, 0);
-            this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.massLookupPanel.Name = "massLookupPanel";
-            this.massLookupPanel.Size = new System.Drawing.Size(1077, 505);
-            this.massLookupPanel.TabIndex = 5;
-            this.massLookupPanel.Visible = false;
-            // 
-            // MassLookupButton
-            // 
-            this.MassLookupButton.Location = new System.Drawing.Point(471, 242);
-            this.MassLookupButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MassLookupButton.Name = "MassLookupButton";
-            this.MassLookupButton.Size = new System.Drawing.Size(162, 55);
-            this.MassLookupButton.TabIndex = 0;
-            this.MassLookupButton.Text = "Mass Lookup";
-            this.MassLookupButton.UseVisualStyleBackColor = true;
-            this.MassLookupButton.Click += new System.EventHandler(this.MassLookupButton_Click);
-            // 
-            // massLookupProgressBar
-            // 
-            this.massLookupProgressBar.Location = new System.Drawing.Point(321, 338);
-            this.massLookupProgressBar.Name = "massLookupProgressBar";
-            this.massLookupProgressBar.Size = new System.Drawing.Size(466, 23);
-            this.massLookupProgressBar.TabIndex = 1;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // openFileButton
-            // 
-            this.openFileButton.Location = new System.Drawing.Point(149, 68);
-            this.openFileButton.Name = "openFileButton";
-            this.openFileButton.Size = new System.Drawing.Size(137, 36);
-            this.openFileButton.TabIndex = 2;
-            this.openFileButton.Text = "Open File";
-            this.openFileButton.UseVisualStyleBackColor = true;
-            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
-            // 
-            // MainFrame
+            // mainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1228, 745);
-            this.Controls.Add(this.massLookupPanel);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.computerTable);
             this.Controls.Add(this.panel1);
-            this.Name = "MainFrame";
+            this.Name = "mainFrame";
             this.Text = "Computer Locator";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.massLookupPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,14 +219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Model;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
         public System.Windows.Forms.DataGridView computerTable;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button ipComputerLookup;
-        private System.Windows.Forms.Button TextFileLookup;
-        private System.Windows.Forms.Panel massLookupPanel;
-        private System.Windows.Forms.Button MassLookupButton;
-        public System.Windows.Forms.ProgressBar massLookupProgressBar;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button openFileButton;
     }
 }
 

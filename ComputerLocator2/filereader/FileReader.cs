@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
 using ComputerLocator2.commandexecutor;
 using ComputerLocator2.list;
-using System.ComponentModel; 
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.IO; 
 
 namespace ComputerLocator2.filereader
 {
     class FileReader
     {
-        System.IO.StreamReader file = new System.IO.StreamReader("c:\\printerlist.txt");
+        //public delegate void ProgressDelegate(int progress);
+        ProgressBar massLookupProgressBar;
+
+
+        StreamReader file; 
         List<string> ipAddressList = new List<string>();
         String line;
         BackgroundWorker bw; 
    
-        public FileReader()
+        public FileReader(ProgressBar progressBar, string filePath)
         {
+            massLookupProgressBar = progressBar;
+            file = new StreamReader(filePath); 
+
             this.bw = new BackgroundWorker();
             this.bw.DoWork += new DoWorkEventHandler(ReadFile);
             this.bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
@@ -31,18 +38,25 @@ namespace ComputerLocator2.filereader
         private void Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             Console.WriteLine("Done");
-            TableUpdater.PopulateTableFromComputerList();
+            //TableUpdater.PopulateTableFromComputerList();
         }
 
+        
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Console.WriteLine("Progress: " + e.ProgressPercentage.ToString());
+            massLookupProgressBar.Value = e.ProgressPercentage; 
+            
         }
+        
+        
+        
 
         private void ReadFile(object sender, DoWorkEventArgs e)
         {
             //const int maxThreads = 100;
-            int computerCount = 0; 
+            int computerCount = 0;
+            int computersCounted = 0; 
             
             
 
@@ -54,31 +68,22 @@ namespace ComputerLocator2.filereader
             file.Close();
             computerCount = ipAddressList.Count();
 
-            /*
-            foreach (String ipAddressObj in ipAddressList)
-            {
-                Parallel.For(0, 50, new ParallelOptions { MaxDegreeOfParallelism = maxThreads },
-                     i =>
-                    {
-                        ObtainComputerInformation oci = new ObtainComputerInformation(ipAddressObj); 
-                    });
-            }
-            */
-
+           
             Parallel.ForEach(ipAddressList, ipAddress =>
             {
+                
                 ObtainComputerInformation oci = new ObtainComputerInformation(ipAddress);
+
+                ++computersCounted;
+                int precentProgress = (computersCounted * 100) / computerCount;
+                bw.ReportProgress(precentProgress, computersCounted); 
             });
          
             
-            ComputerList.PrintList();
+            //ComputerList.PrintList();
             Console.WriteLine("All operations have completed.");
-
-
-
-
+            
         }
-
-       
+               
     }
 }
