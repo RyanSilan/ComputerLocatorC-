@@ -13,10 +13,10 @@ namespace ComputerLocator2.commandexecutor
 {
     class ObtainComputerInformation
     {
-        string cmd = "/c %windir%\\System32\\wbem\\WMIC.exe /node:";
-        string serialNumberCommand = " bios get serialnumber";
-        string modelNumberCommand = " computersystem get model";
-        string nameCommand = " computersystem get name";
+        private readonly string cmd = "/c %windir%\\System32\\wbem\\WMIC.exe /node:";
+        private readonly string serialNumberCommand = " bios get serialnumber";
+        private readonly string modelNumberCommand = " computersystem get model";
+        private readonly string nameCommand = " computersystem get name";
         string name = null;
         string ipAddress = null;
         string model = null;

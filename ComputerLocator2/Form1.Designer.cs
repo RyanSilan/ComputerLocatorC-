@@ -47,10 +47,13 @@
             this.TextFileLookup = new System.Windows.Forms.Button();
             this.ipComputerLookup = new System.Windows.Forms.Button();
             this.massLookupPanel = new System.Windows.Forms.Panel();
-            this.MassLookupButton = new System.Windows.Forms.Button();
-            this.massLookupProgressBar = new System.Windows.Forms.ProgressBar();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.filePathLabel = new System.Windows.Forms.Label();
             this.openFileButton = new System.Windows.Forms.Button();
+            this.massLookupProgressBar = new System.Windows.Forms.ProgressBar();
+            this.MassLookupButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.filePathLab = new System.Windows.Forms.Label();
+            this.filePath = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
             this.panel2.SuspendLayout();
@@ -165,7 +168,7 @@
             this.Model,
             this.SerialNumber});
             this.computerTable.Location = new System.Drawing.Point(151, 503);
-            this.computerTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.computerTable.Margin = new System.Windows.Forms.Padding(2);
             this.computerTable.Name = "computerTable";
             this.computerTable.RowTemplate.Height = 33;
             this.computerTable.Size = new System.Drawing.Size(1077, 242);
@@ -202,7 +205,7 @@
             this.panel2.Controls.Add(this.ipComputerLookup);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(150, 745);
             this.panel2.TabIndex = 4;
@@ -210,7 +213,7 @@
             // TextFileLookup
             // 
             this.TextFileLookup.Location = new System.Drawing.Point(9, 206);
-            this.TextFileLookup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextFileLookup.Margin = new System.Windows.Forms.Padding(2);
             this.TextFileLookup.Name = "TextFileLookup";
             this.TextFileLookup.Size = new System.Drawing.Size(128, 61);
             this.TextFileLookup.TabIndex = 5;
@@ -221,7 +224,7 @@
             // ipComputerLookup
             // 
             this.ipComputerLookup.Location = new System.Drawing.Point(9, 121);
-            this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(2);
             this.ipComputerLookup.Name = "ipComputerLookup";
             this.ipComputerLookup.Size = new System.Drawing.Size(128, 60);
             this.ipComputerLookup.TabIndex = 5;
@@ -231,20 +234,48 @@
             // 
             // massLookupPanel
             // 
+            this.massLookupPanel.Controls.Add(this.filePath);
+            this.massLookupPanel.Controls.Add(this.filePathLab);
+            this.massLookupPanel.Controls.Add(this.filePathLabel);
             this.massLookupPanel.Controls.Add(this.openFileButton);
             this.massLookupPanel.Controls.Add(this.massLookupProgressBar);
             this.massLookupPanel.Controls.Add(this.MassLookupButton);
             this.massLookupPanel.Location = new System.Drawing.Point(151, 0);
-            this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2);
             this.massLookupPanel.Name = "massLookupPanel";
             this.massLookupPanel.Size = new System.Drawing.Size(1077, 505);
             this.massLookupPanel.TabIndex = 5;
             this.massLookupPanel.Visible = false;
             // 
+            // filePathLabel
+            // 
+            this.filePathLabel.AutoSize = true;
+            this.filePathLabel.Location = new System.Drawing.Point(235, 400);
+            this.filePathLabel.Name = "filePathLabel";
+            this.filePathLabel.Size = new System.Drawing.Size(0, 20);
+            this.filePathLabel.TabIndex = 3;
+            // 
+            // openFileButton
+            // 
+            this.openFileButton.Location = new System.Drawing.Point(475, 439);
+            this.openFileButton.Name = "openFileButton";
+            this.openFileButton.Size = new System.Drawing.Size(162, 36);
+            this.openFileButton.TabIndex = 2;
+            this.openFileButton.Text = "Open File";
+            this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
+            // 
+            // massLookupProgressBar
+            // 
+            this.massLookupProgressBar.Location = new System.Drawing.Point(323, 237);
+            this.massLookupProgressBar.Name = "massLookupProgressBar";
+            this.massLookupProgressBar.Size = new System.Drawing.Size(466, 23);
+            this.massLookupProgressBar.TabIndex = 1;
+            // 
             // MassLookupButton
             // 
-            this.MassLookupButton.Location = new System.Drawing.Point(471, 242);
-            this.MassLookupButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MassLookupButton.Location = new System.Drawing.Point(475, 141);
+            this.MassLookupButton.Margin = new System.Windows.Forms.Padding(2);
             this.MassLookupButton.Name = "MassLookupButton";
             this.MassLookupButton.Size = new System.Drawing.Size(162, 55);
             this.MassLookupButton.TabIndex = 0;
@@ -252,26 +283,26 @@
             this.MassLookupButton.UseVisualStyleBackColor = true;
             this.MassLookupButton.Click += new System.EventHandler(this.MassLookupButton_Click);
             // 
-            // massLookupProgressBar
-            // 
-            this.massLookupProgressBar.Location = new System.Drawing.Point(321, 338);
-            this.massLookupProgressBar.Name = "massLookupProgressBar";
-            this.massLookupProgressBar.Size = new System.Drawing.Size(466, 23);
-            this.massLookupProgressBar.TabIndex = 1;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // openFileButton
+            // filePathLab
             // 
-            this.openFileButton.Location = new System.Drawing.Point(149, 68);
-            this.openFileButton.Name = "openFileButton";
-            this.openFileButton.Size = new System.Drawing.Size(137, 36);
-            this.openFileButton.TabIndex = 2;
-            this.openFileButton.Text = "Open File";
-            this.openFileButton.UseVisualStyleBackColor = true;
-            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
+            this.filePathLab.AutoSize = true;
+            this.filePathLab.Location = new System.Drawing.Point(154, 392);
+            this.filePathLab.Name = "filePathLab";
+            this.filePathLab.Size = new System.Drawing.Size(75, 20);
+            this.filePathLab.TabIndex = 4;
+            this.filePathLab.Text = "File Path:";
+            // 
+            // filePath
+            // 
+            this.filePath.Location = new System.Drawing.Point(235, 384);
+            this.filePath.Name = "filePath";
+            this.filePath.Size = new System.Drawing.Size(642, 36);
+            this.filePath.TabIndex = 5;
+            this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainFrame
             // 
@@ -289,6 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).EndInit();
             this.panel2.ResumeLayout(false);
             this.massLookupPanel.ResumeLayout(false);
+            this.massLookupPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -318,6 +350,9 @@
         public System.Windows.Forms.ProgressBar massLookupProgressBar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button openFileButton;
+        private System.Windows.Forms.Label filePathLabel;
+        private System.Windows.Forms.Label filePath;
+        private System.Windows.Forms.Label filePathLab;
     }
 }
 

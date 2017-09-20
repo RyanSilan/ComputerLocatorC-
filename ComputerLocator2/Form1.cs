@@ -57,10 +57,18 @@ namespace ComputerLocator2
             
 
             Console.WriteLine("Capacity: " + computerList.Count);
+
+            try
+            {
+                computerNameTextBox.Text = computerList[computerList.Count - 1].GetName();
+                computerModelTextBox.Text = computerList[computerList.Count - 1].GetModel();
+                computerSNTextBox.Text = computerList[computerList.Count - 1].GetSerialNumber();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Cannot retrieve information");    
+            }
             
-            computerNameTextBox.Text = computerList[computerList.Count-1].GetName();
-            computerModelTextBox.Text = computerList[computerList.Count-1].GetModel();
-            computerSNTextBox.Text = computerList[computerList.Count-1].GetSerialNumber();
             
         }
 
@@ -111,7 +119,8 @@ namespace ComputerLocator2
             {
                 
                 //MessageBox.Show(openFileDialog1.FileName);
-                fileName = openFileDialog1.FileName; 
+                fileName = openFileDialog1.FileName;
+                filePath.Text = fileName; 
             }
         }
     }
