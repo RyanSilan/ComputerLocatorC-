@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="commandexecutor\ObtainPrinterInformation.cs" />
+    <Compile Include="list\PrinterList.cs" />
     <Compile Include="TableUpdater.cs" />
     <Compile Include="commandexecutor\CommandExecutor.cs" />
     <Compile Include="commandexecutor\ObtainComputerInformation.cs" />

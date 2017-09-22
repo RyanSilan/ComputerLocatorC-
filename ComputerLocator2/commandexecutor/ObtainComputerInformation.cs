@@ -1,13 +1,9 @@
 ﻿﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ComputerLocator2.physicaldevice;
 using ComputerLocator2.list;
-using System.Collections;
-using System.Threading;
-using ComputerLocator2; 
+using ComputerLocator2.commandexecutor; 
 
 namespace ComputerLocator2.commandexecutor
 {

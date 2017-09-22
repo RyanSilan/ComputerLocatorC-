@@ -41,17 +41,20 @@ namespace ComputerLocator2
 
 
             ObtainComputerInformation oci;
+            ObtainPrinterInformation opi; 
             List<Computer> computerList = ComputerList.GetComputerList();
-
+            
         
             if (ipAddressTextBox.Text.Equals(""))
             {
                 ipAddressTextBox.Text = "127.0.0.1"; 
                 oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+                opi = new ObtainPrinterInformation(ipAddressTextBox.Text); 
             }
             else
             {
-                oci = new ObtainComputerInformation(ipAddressTextBox.Text); 
+                oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+                opi = new ObtainPrinterInformation(ipAddressTextBox.Text);
             }
 
             

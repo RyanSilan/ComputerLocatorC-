@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace ComputerLocator2.physicaldevice
 {
-    class Printer
+    public class Printer
     {
-        string name;
-        string ipAddress;
-        //string manu;
-        //string model; 
+        public string name { get; set; }
+        public string ipAddress { get; set; }
+        public string driver { get; set; }
 
-        public Printer(string ipAddress, string name)
+        public Printer(string ipAddress)
         {
-            this.name = name;
-            this.ipAddress = ipAddress; 
+            this.ipAddress = ipAddress;
         }
+        
     }
 }
