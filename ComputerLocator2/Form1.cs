@@ -16,7 +16,9 @@ namespace ComputerLocator2
         public MainFrame()
         {
             InitializeComponent();
-            TableUpdater.computerTable = computerTable;              
+            TableUpdater.computerTable = computerTable;
+            
+            
         }
         
         private void Test_Click(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace ComputerLocator2
 
 
             ObtainComputerInformation oci;
-            ObtainPrinterInformation opi; 
+             
             List<Computer> computerList = ComputerList.GetComputerList();
             
         
@@ -49,12 +51,10 @@ namespace ComputerLocator2
             {
                 ipAddressTextBox.Text = "127.0.0.1"; 
                 oci = new ObtainComputerInformation(ipAddressTextBox.Text);
-                opi = new ObtainPrinterInformation(ipAddressTextBox.Text); 
             }
             else
             {
                 oci = new ObtainComputerInformation(ipAddressTextBox.Text);
-                opi = new ObtainPrinterInformation(ipAddressTextBox.Text);
             }
 
             
@@ -85,7 +85,10 @@ namespace ComputerLocator2
 
         private void ipComputerLookup_Click(object sender, EventArgs e)
         {
-            massLookupPanel.Hide(); 
+            massLookupPanel.Hide();
+            printerPanel.Hide();
+            panel1.Show();
+            computerTable.Show(); 
         }
 
         private void MassLookupButton_Click(object sender, EventArgs e)
@@ -108,7 +111,10 @@ namespace ComputerLocator2
 
         private void TextFileLookup_Click(object sender, EventArgs e)
         {
-            massLookupPanel.Show(); 
+            panel1.Hide();
+            printerPanel.Hide(); 
+            massLookupPanel.Show();
+            computerTable.Show(); 
         }
 
         public void SetProgress(int progress)
@@ -125,6 +131,14 @@ namespace ComputerLocator2
                 fileName = openFileDialog1.FileName;
                 filePath.Text = fileName; 
             }
+        }
+
+        private void printerLookupButton_Click(object sender, EventArgs e)
+        {
+            massLookupPanel.Hide();
+            panel1.Hide();
+            computerTable.Hide(); 
+            printerPanel.Show(); 
         }
     }
 }

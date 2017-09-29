@@ -44,16 +44,18 @@
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.printerLookupButton = new System.Windows.Forms.Button();
             this.TextFileLookup = new System.Windows.Forms.Button();
             this.ipComputerLookup = new System.Windows.Forms.Button();
             this.massLookupPanel = new System.Windows.Forms.Panel();
+            this.filePath = new System.Windows.Forms.Label();
+            this.filePathLab = new System.Windows.Forms.Label();
             this.filePathLabel = new System.Windows.Forms.Label();
             this.openFileButton = new System.Windows.Forms.Button();
             this.massLookupProgressBar = new System.Windows.Forms.ProgressBar();
             this.MassLookupButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.filePathLab = new System.Windows.Forms.Label();
-            this.filePath = new System.Windows.Forms.Label();
+            this.printerPanel = new ComputerLocator2.PrinterPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
             this.panel2.SuspendLayout();
@@ -158,6 +160,8 @@
             // 
             // computerTable
             // 
+            this.computerTable.AllowUserToAddRows = false;
+            this.computerTable.AllowUserToDeleteRows = false;
             this.computerTable.AllowUserToOrderColumns = true;
             this.computerTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.computerTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -201,6 +205,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel2.Controls.Add(this.printerLookupButton);
             this.panel2.Controls.Add(this.TextFileLookup);
             this.panel2.Controls.Add(this.ipComputerLookup);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -209,6 +214,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(150, 745);
             this.panel2.TabIndex = 4;
+            // 
+            // printerLookupButton
+            // 
+            this.printerLookupButton.Location = new System.Drawing.Point(9, 296);
+            this.printerLookupButton.Name = "printerLookupButton";
+            this.printerLookupButton.Size = new System.Drawing.Size(128, 61);
+            this.printerLookupButton.TabIndex = 6;
+            this.printerLookupButton.Text = "Lookup Printers";
+            this.printerLookupButton.UseVisualStyleBackColor = true;
+            this.printerLookupButton.Click += new System.EventHandler(this.printerLookupButton_Click);
             // 
             // TextFileLookup
             // 
@@ -243,9 +258,26 @@
             this.massLookupPanel.Location = new System.Drawing.Point(151, 0);
             this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2);
             this.massLookupPanel.Name = "massLookupPanel";
-            this.massLookupPanel.Size = new System.Drawing.Size(1077, 505);
+            this.massLookupPanel.Size = new System.Drawing.Size(1077, 504);
             this.massLookupPanel.TabIndex = 5;
             this.massLookupPanel.Visible = false;
+            // 
+            // filePath
+            // 
+            this.filePath.Location = new System.Drawing.Point(235, 384);
+            this.filePath.Name = "filePath";
+            this.filePath.Size = new System.Drawing.Size(642, 36);
+            this.filePath.TabIndex = 5;
+            this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // filePathLab
+            // 
+            this.filePathLab.AutoSize = true;
+            this.filePathLab.Location = new System.Drawing.Point(154, 392);
+            this.filePathLab.Name = "filePathLab";
+            this.filePathLab.Size = new System.Drawing.Size(75, 20);
+            this.filePathLab.TabIndex = 4;
+            this.filePathLab.Text = "File Path:";
             // 
             // filePathLabel
             // 
@@ -287,32 +319,24 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // filePathLab
+            // printerPanel
             // 
-            this.filePathLab.AutoSize = true;
-            this.filePathLab.Location = new System.Drawing.Point(154, 392);
-            this.filePathLab.Name = "filePathLab";
-            this.filePathLab.Size = new System.Drawing.Size(75, 20);
-            this.filePathLab.TabIndex = 4;
-            this.filePathLab.Text = "File Path:";
-            // 
-            // filePath
-            // 
-            this.filePath.Location = new System.Drawing.Point(235, 384);
-            this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(642, 36);
-            this.filePath.TabIndex = 5;
-            this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.printerPanel.Location = new System.Drawing.Point(151, 0);
+            this.printerPanel.Name = "printerPanel";
+            this.printerPanel.Size = new System.Drawing.Size(1077, 747);
+            this.printerPanel.TabIndex = 6;
+            this.printerPanel.Visible = false;
             // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1228, 745);
-            this.Controls.Add(this.massLookupPanel);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.computerTable);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.computerTable);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.printerPanel);
+            this.Controls.Add(this.massLookupPanel);
             this.Name = "MainFrame";
             this.Text = "Computer Locator";
             this.panel1.ResumeLayout(false);
@@ -353,6 +377,8 @@
         private System.Windows.Forms.Label filePathLabel;
         private System.Windows.Forms.Label filePath;
         private System.Windows.Forms.Label filePathLab;
+        private System.Windows.Forms.Button printerLookupButton;
+        private PrinterPanel printerPanel;
     }
 }
 

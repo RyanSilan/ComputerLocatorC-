@@ -8,8 +8,10 @@ namespace ComputerLocator2
     class TableUpdater
     {
         public static DataGridView computerTable { get; set; }
+        public static DataGridView printerTable { get; set; }
 
-        delegate void SetCallBackText(String ipAddress, String name, String model, String sn); 
+        delegate void SetCallBackText(string ipAddress, string name, string model, string sn);
+        delegate void PrinterCallBackSetTableText(string printerIPAddress, string name, string driver); 
 
         public static void PopulateTable(String ipAddress, String name, String model, String sn)
         {
@@ -33,6 +35,20 @@ namespace ComputerLocator2
                     computerTable.Rows.Add(computerObj.GetIpAddress(), computerObj.GetName(), computerObj.GetModel(), computerObj.GetSerialNumber());
                 }
             }
+        }
+
+        public static void PopulatePrinterTable(string printerIPAddress, string name, string driver)
+        {
+            if (printerTable.InvokeRequired)
+            {
+                PrinterCallBackSetTableText update = new PrinterCallBackSetTableText(PopulatePrinterTable); 
+                computerTable.Invoke(update, new object[] { printerIPAddress, name, driver });
+            }
+            else
+            {
+                printerTable.Rows.Add(printerIPAddress, name, driver);
+            }
+
         }
     }
 }

@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ComputerLocator2.list;
 using ComputerLocator2.physicaldevice;
-using System.IO; 
+using System.IO;
+using System.Threading; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -16,17 +17,31 @@ namespace ComputerLocator2.commandexecutor
         private readonly string cmd = "/c %windir%\\System32\\wbem\\WMIC.exe /node:";
         private readonly string printerNameCMD = " printer get name";
         private readonly string printerDriverCMD = " printer get drivername";
-        private readonly string portNameCMD = " printer get portname"; 
+        private readonly string portNameCMD = " printer get portname";
+         
 
 
         
         public ObtainPrinterInformation(string ipAddress)
         {
             computerIPAddress = ipAddress;
-            PrinterList.ClearList(); 
-            GetPrinterIP(); 
-            GetPrinterName();
-            GetPrinterDriver(); 
+            PrinterList.ClearList();
+
+            List<Task> tasks = new List<Task>();
+
+            Task taskOne = Task.Factory.StartNew(() => GetPrinterIP());
+            taskOne.Wait(); 
+            Task taskTwo = Task.Factory.StartNew(() => GetPrinterName());
+            Task taskThree = Task.Factory.StartNew(() => GetPrinterDriver());
+            taskTwo.Wait(); 
+            taskThree.Wait(); 
+
+                        
+            foreach (Printer printer in PrinterList.GetPrinterList())
+            {
+                TableUpdater.PopulatePrinterTable(printer.ipAddress, printer.name, printer.driver); 
+            }
+
             PrinterList.PrintList(); 
 
         }
