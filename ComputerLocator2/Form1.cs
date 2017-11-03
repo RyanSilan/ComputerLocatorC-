@@ -38,9 +38,7 @@ namespace ComputerLocator2
         
         private void retrieveInformation_Click(object sender, EventArgs e)
         {
-            //Not currenlty working. 
-            //clearTextBoxes();
-
+            
 
             ObtainComputerInformation oci;
              
@@ -102,7 +100,12 @@ namespace ComputerLocator2
             {
                 openFileDialog1.ShowDialog();
                 fileName = openFileDialog1.FileName;
-                fileReader = new FileReader(massLookupProgressBar, fileName);
+                filePath.Text = fileName;
+                if(!fileName.Equals("openFileDialog1"))
+                {
+                    fileReader = new FileReader(massLookupProgressBar, fileName);
+                }
+                
             }
 
             
@@ -129,7 +132,9 @@ namespace ComputerLocator2
                 
                 //MessageBox.Show(openFileDialog1.FileName);
                 fileName = openFileDialog1.FileName;
-                filePath.Text = fileName; 
+                filePath.Text = fileName;
+                
+                                
             }
         }
 

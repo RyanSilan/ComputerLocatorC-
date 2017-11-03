@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using ComputerLocator2.list;
 using ComputerLocator2.physicaldevice;
 using System.IO;
-using System.Threading; 
+using System.Threading;
+using System.ComponentModel; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -18,6 +19,7 @@ namespace ComputerLocator2.commandexecutor
         private readonly string printerNameCMD = " printer get name";
         private readonly string printerDriverCMD = " printer get drivername";
         private readonly string portNameCMD = " printer get portname";
+        private BackgroundWorker bw; 
          
 
 
@@ -27,8 +29,10 @@ namespace ComputerLocator2.commandexecutor
             computerIPAddress = ipAddress;
             PrinterList.ClearList();
 
+            /*
             List<Task> tasks = new List<Task>();
 
+            
             Task taskOne = Task.Factory.StartNew(() => GetPrinterIP());
             taskOne.Wait(); 
             Task taskTwo = Task.Factory.StartNew(() => GetPrinterName());
@@ -36,17 +40,17 @@ namespace ComputerLocator2.commandexecutor
             taskTwo.Wait(); 
             taskThree.Wait(); 
 
-                        
-            foreach (Printer printer in PrinterList.GetPrinterList())
-            {
-                TableUpdater.PopulatePrinterTable(printer.ipAddress, printer.name, printer.driver); 
-            }
+            */
 
-            PrinterList.PrintList(); 
+            this.bw = new BackgroundWorker();
+            this.bw.DoWork += new DoWorkEventHandler(GetAllPrinterInfo);
+
+
+            this.bw.RunWorkerAsync(); 
 
         }
 
-        public string GetPrinterName()
+        public void GetPrinterName()
         {
             int i = 0; 
             string tempCmd = cmd + computerIPAddress + printerNameCMD;
@@ -72,10 +76,9 @@ namespace ComputerLocator2.commandexecutor
                  
             }
             
-            return "test"; 
         }
 
-        public string GetPrinterIP()
+        public void GetPrinterIP()
         {
             string tempCmd = cmd + computerIPAddress + portNameCMD;
             string tempOutput = null;
@@ -95,11 +98,10 @@ namespace ComputerLocator2.commandexecutor
                 }
 
             }
-
-           return "test"; 
+            
         }
 
-        public string GetPrinterDriver()
+        public void GetPrinterDriver()
         {
             int i = 0;
             string tempCmd = cmd + computerIPAddress + printerDriverCMD;
@@ -123,8 +125,27 @@ namespace ComputerLocator2.commandexecutor
 
 
             }
+            
+        }
 
-            return "test";
+        private void GetAllPrinterInfo(object sender, DoWorkEventArgs e)
+        {
+            List<Task> tasks = new List<Task>();
+
+
+            Task taskOne = Task.Factory.StartNew(() => GetPrinterIP());
+            taskOne.Wait();
+            Task taskTwo = Task.Factory.StartNew(() => GetPrinterName());
+            Task taskThree = Task.Factory.StartNew(() => GetPrinterDriver());
+            taskTwo.Wait();
+            taskThree.Wait();
+
+            foreach (Printer printer in PrinterList.GetPrinterList())
+            {
+                TableUpdater.PopulatePrinterTable(printer.ipAddress, printer.name, printer.driver);
+            }
+
+            PrinterList.PrintList();
         }
     }
 }

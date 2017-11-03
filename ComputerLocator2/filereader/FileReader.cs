@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComputerLocator2.commandexecutor;
-using ComputerLocator2.list;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO; 
@@ -12,7 +11,6 @@ namespace ComputerLocator2.filereader
 {
     class FileReader
     {
-        //public delegate void ProgressDelegate(int progress);
         ProgressBar massLookupProgressBar;
 
 
@@ -38,7 +36,6 @@ namespace ComputerLocator2.filereader
         private void Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             Console.WriteLine("Done");
-            //TableUpdater.PopulateTableFromComputerList();
         }
 
         
@@ -54,7 +51,6 @@ namespace ComputerLocator2.filereader
 
         private void ReadFile(object sender, DoWorkEventArgs e)
         {
-            //const int maxThreads = 100;
             int computerCount = 0;
             int computersCounted = 0; 
             
@@ -80,8 +76,6 @@ namespace ComputerLocator2.filereader
             });
          
             
-            //ComputerList.PrintList();
-            Console.WriteLine("All operations have completed.");
             
         }
                
