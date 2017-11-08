@@ -47,7 +47,7 @@ namespace ComputerLocator2.commandexecutor
 
                 Task.WaitAll(tasks.ToArray());
 
-                TableUpdater.PopulateTable(ipAddress, name, model, serialNumber); 
+                TableUpdater.PopulateComputerTable(ipAddress, name, model, serialNumber); 
 
                 Computer computer = new Computer(ipAddress, name, serialNumber, model);
                 ComputerList.AddToList(computer);
@@ -56,7 +56,7 @@ namespace ComputerLocator2.commandexecutor
             }
         }
 
-       
+        //Gets Serial Number via WMIC
         private string GetSerialNumber()
         {
             CommandExecutor commandExecutor = new CommandExecutor();
@@ -71,6 +71,7 @@ namespace ComputerLocator2.commandexecutor
 
         }
 
+        //Gets the Computer Model via WMIC
         private string GetModel()
         {
             CommandExecutor commandExecutor = new CommandExecutor();
@@ -83,6 +84,7 @@ namespace ComputerLocator2.commandexecutor
             return commandOutput.ReadLine();
         }
 
+        //Gets the computer name via WMIC
         private string GetName()
         {
 			CommandExecutor commandExecutor = new CommandExecutor();

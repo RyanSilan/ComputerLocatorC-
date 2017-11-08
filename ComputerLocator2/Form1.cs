@@ -84,6 +84,7 @@ namespace ComputerLocator2
         private void ipComputerLookup_Click(object sender, EventArgs e)
         {
             massLookupPanel.Hide();
+            programsPanel.Hide();
             printerPanel.Hide();
             panel1.Show();
             computerTable.Show(); 
@@ -115,7 +116,8 @@ namespace ComputerLocator2
         private void TextFileLookup_Click(object sender, EventArgs e)
         {
             panel1.Hide();
-            printerPanel.Hide(); 
+            printerPanel.Hide();
+            programsPanel.Hide();
             massLookupPanel.Show();
             computerTable.Show(); 
         }
@@ -142,8 +144,18 @@ namespace ComputerLocator2
         {
             massLookupPanel.Hide();
             panel1.Hide();
-            computerTable.Hide(); 
+            computerTable.Hide();
+            programsPanel.Hide();
             printerPanel.Show(); 
+        }
+
+        private void programsButton_Click(object sender, EventArgs e)
+        {
+            massLookupPanel.Hide();
+            printerPanel.Hide();
+            panel1.Hide();
+            computerTable.Hide();
+            programsPanel.Show();
         }
     }
 }

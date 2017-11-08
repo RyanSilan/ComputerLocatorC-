@@ -44,6 +44,7 @@
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.programsButton = new System.Windows.Forms.Button();
             this.printerLookupButton = new System.Windows.Forms.Button();
             this.TextFileLookup = new System.Windows.Forms.Button();
             this.ipComputerLookup = new System.Windows.Forms.Button();
@@ -56,6 +57,8 @@
             this.MassLookupButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.printerPanel = new ComputerLocator2.PrinterPanel();
+            this.programsPanel = new ComputerLocator2.ProgramsPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
             this.panel2.SuspendLayout();
@@ -165,16 +168,22 @@
             this.computerTable.AllowUserToOrderColumns = true;
             this.computerTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.computerTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.computerTable.BackgroundColor = System.Drawing.Color.White;
+            this.computerTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.computerTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.computerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.computerTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IPAddress,
             this.ComputerName,
             this.Model,
             this.SerialNumber});
+            this.computerTable.GridColor = System.Drawing.Color.LightGray;
             this.computerTable.Location = new System.Drawing.Point(151, 503);
             this.computerTable.Margin = new System.Windows.Forms.Padding(2);
             this.computerTable.Name = "computerTable";
+            this.computerTable.RowHeadersVisible = false;
             this.computerTable.RowTemplate.Height = 33;
+            this.computerTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.computerTable.Size = new System.Drawing.Size(1077, 242);
             this.computerTable.TabIndex = 3;
             // 
@@ -205,6 +214,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel2.Controls.Add(this.programsButton);
             this.panel2.Controls.Add(this.printerLookupButton);
             this.panel2.Controls.Add(this.TextFileLookup);
             this.panel2.Controls.Add(this.ipComputerLookup);
@@ -215,9 +225,19 @@
             this.panel2.Size = new System.Drawing.Size(150, 745);
             this.panel2.TabIndex = 4;
             // 
+            // programsButton
+            // 
+            this.programsButton.Location = new System.Drawing.Point(9, 378);
+            this.programsButton.Name = "programsButton";
+            this.programsButton.Size = new System.Drawing.Size(128, 61);
+            this.programsButton.TabIndex = 7;
+            this.programsButton.Text = "Lookup Programs";
+            this.programsButton.UseVisualStyleBackColor = true;
+            this.programsButton.Click += new System.EventHandler(this.programsButton_Click);
+            // 
             // printerLookupButton
             // 
-            this.printerLookupButton.Location = new System.Drawing.Point(9, 296);
+            this.printerLookupButton.Location = new System.Drawing.Point(9, 292);
             this.printerLookupButton.Name = "printerLookupButton";
             this.printerLookupButton.Size = new System.Drawing.Size(128, 61);
             this.printerLookupButton.TabIndex = 6;
@@ -241,7 +261,7 @@
             this.ipComputerLookup.Location = new System.Drawing.Point(9, 121);
             this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(2);
             this.ipComputerLookup.Name = "ipComputerLookup";
-            this.ipComputerLookup.Size = new System.Drawing.Size(128, 60);
+            this.ipComputerLookup.Size = new System.Drawing.Size(128, 61);
             this.ipComputerLookup.TabIndex = 5;
             this.ipComputerLookup.Text = "Lookup by IP";
             this.ipComputerLookup.UseVisualStyleBackColor = true;
@@ -255,6 +275,7 @@
             this.massLookupPanel.Controls.Add(this.openFileButton);
             this.massLookupPanel.Controls.Add(this.massLookupProgressBar);
             this.massLookupPanel.Controls.Add(this.MassLookupButton);
+            this.massLookupPanel.Controls.Add(this.panel3);
             this.massLookupPanel.Location = new System.Drawing.Point(151, 0);
             this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2);
             this.massLookupPanel.Name = "massLookupPanel";
@@ -299,14 +320,14 @@
             // 
             // massLookupProgressBar
             // 
-            this.massLookupProgressBar.Location = new System.Drawing.Point(323, 237);
+            this.massLookupProgressBar.Location = new System.Drawing.Point(318, 237);
             this.massLookupProgressBar.Name = "massLookupProgressBar";
             this.massLookupProgressBar.Size = new System.Drawing.Size(466, 23);
             this.massLookupProgressBar.TabIndex = 1;
             // 
             // MassLookupButton
             // 
-            this.MassLookupButton.Location = new System.Drawing.Point(475, 141);
+            this.MassLookupButton.Location = new System.Drawing.Point(470, 141);
             this.MassLookupButton.Margin = new System.Windows.Forms.Padding(2);
             this.MassLookupButton.Name = "MassLookupButton";
             this.MassLookupButton.Size = new System.Drawing.Size(162, 55);
@@ -327,16 +348,35 @@
             this.printerPanel.TabIndex = 6;
             this.printerPanel.Visible = false;
             // 
+            // programsPanel
+            // 
+            this.programsPanel.Location = new System.Drawing.Point(151, 0);
+            this.programsPanel.Name = "programsPanel";
+            this.programsPanel.Size = new System.Drawing.Size(1077, 747);
+            this.programsPanel.TabIndex = 7;
+            this.programsPanel.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel3.Location = new System.Drawing.Point(257, 85);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(589, 255);
+            this.panel3.TabIndex = 6;
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1228, 745);
+            this.Controls.Add(this.massLookupPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.computerTable);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.printerPanel);
-            this.Controls.Add(this.massLookupPanel);
+            this.Controls.Add(this.programsPanel);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainFrame";
             this.Text = "Computer Locator";
             this.panel1.ResumeLayout(false);
@@ -379,6 +419,9 @@
         private System.Windows.Forms.Label filePathLab;
         private System.Windows.Forms.Button printerLookupButton;
         private PrinterPanel printerPanel;
+        private ProgramsPanel programsPanel;
+        private System.Windows.Forms.Button programsButton;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

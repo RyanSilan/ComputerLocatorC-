@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.printerTable = new System.Windows.Forms.DataGridView();
-            this.printerIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.driver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ipAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printerDriver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ipAddressTextBox = new System.Windows.Forms.TextBox();
             this.retrieveInformationButton = new System.Windows.Forms.Button();
@@ -46,31 +46,36 @@
             this.printerTable.AllowUserToDeleteRows = false;
             this.printerTable.AllowUserToResizeRows = false;
             this.printerTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.printerTable.BackgroundColor = System.Drawing.Color.White;
+            this.printerTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.printerTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.printerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.printerTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.printerIP,
-            this.name,
-            this.driver});
+            this.ipAddress,
+            this.printerName,
+            this.printerDriver});
+            this.printerTable.GridColor = System.Drawing.Color.LightGray;
             this.printerTable.Location = new System.Drawing.Point(0, 503);
             this.printerTable.Name = "printerTable";
+            this.printerTable.RowHeadersVisible = false;
             this.printerTable.RowTemplate.Height = 28;
             this.printerTable.Size = new System.Drawing.Size(1077, 242);
             this.printerTable.TabIndex = 0;
             // 
-            // printerIP
+            // ipAddress
             // 
-            this.printerIP.HeaderText = "Printer IP";
-            this.printerIP.Name = "printerIP";
+            this.ipAddress.HeaderText = "IP Address";
+            this.ipAddress.Name = "ipAddress";
             // 
-            // name
+            // printerName
             // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
+            this.printerName.HeaderText = "Name";
+            this.printerName.Name = "printerName";
             // 
-            // driver
+            // printerDriver
             // 
-            this.driver.HeaderText = "Driver";
-            this.driver.Name = "driver";
+            this.printerDriver.HeaderText = "Driver";
+            this.printerDriver.Name = "printerDriver";
             // 
             // panel1
             // 
@@ -129,12 +134,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView printerTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn printerIP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn driver;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox ipAddressTextBox;
         private System.Windows.Forms.Button retrieveInformationButton;
         private System.Windows.Forms.Label ipAddressLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ipAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn printerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn printerDriver;
     }
 }

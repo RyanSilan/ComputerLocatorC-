@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ServiceProcess;
+using ComputerLocator2.commandexecutor; 
 
 namespace ComputerLocator2
 {
@@ -14,9 +13,7 @@ namespace ComputerLocator2
         [STAThread]
         static void Main()
         {
-
-            //var oci = new commandexecutor.ObtainComputerInformation("127.0.0.1");
-
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
