@@ -126,7 +126,7 @@ namespace ComputerLocator2.commandexecutor
                     Console.WriteLine(e);
                     commandExecutor.ExecuteCommand(cmdToStart);
                     sc.Start(); 
-                    sc.WaitForStatus(ServiceControllerStatus.Running); 
+                    sc.WaitForStatus(ServiceControllerStatus.Running);
                 }
                  
             }
