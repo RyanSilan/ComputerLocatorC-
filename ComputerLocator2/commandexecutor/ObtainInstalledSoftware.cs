@@ -27,20 +27,31 @@ namespace ComputerLocator2.commandexecutor
         {
             computerName = computer;
             oisProgressBar = progressBar;
+
             bw.DoWork += GetInstalledSoftware;
             bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-            bw.WorkerReportsProgress = true; 
-            bw.RunWorkerAsync(); 
+            bw.WorkerReportsProgress = true;
+
+            
+           bw.RunWorkerAsync();
+            
+            
 
         }
 
         private void GetInstalledSoftware(object sender, DoWorkEventArgs e)
         {
             int totalNumberOfKeys = 0;
-            int countedKeys = 0; 
-            StartService(computerName);
+            int countedKeys = 0;
+
+            try
+            {
             
-            using (RegistryKey key =
+
+                Console.WriteLine("About to start the service.");
+                StartService(computerName);
+
+                using (RegistryKey key =
                 RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, computerName).OpenSubKey(registryKey))
             {
                 totalNumberOfKeys = key.GetSubKeyNames().Length; 
@@ -89,6 +100,17 @@ namespace ComputerLocator2.commandexecutor
                     }
                 }
             }
+                
+            }
+        
+            catch (Exception ex)
+            {
+                
+                    Console.WriteLine("Failed to start the service, caught exception");
+                    MessageBox.Show("Failed to start the service! \n\n\n" + ex, "Error");
+                
+            }
+            
 
             StopService(); 
         }
@@ -106,8 +128,15 @@ namespace ComputerLocator2.commandexecutor
         {
             string cmdToStart = firstPartOfCMD + computerName + secondPartOfCMDToStart;
             sc.MachineName = computerName;
-               
-            Console.WriteLine("Status of the service when attempting to start: " + sc.Status.ToString());
+
+            try
+            {
+                Console.WriteLine("Status of the service when attempting to start: " + sc.Status.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can't connect to the machine to get the service status", "Error");
+            }
             
             if(sc.Status == ServiceControllerStatus.Stopped)
             {
@@ -121,12 +150,21 @@ namespace ComputerLocator2.commandexecutor
                 //If it fails, it will attempt to use the SC.exe built into Windows
                 //via CMD to set the service to "Manual" and then use ServiceController
                 //to start the service. 
-                catch (InvalidOperationException e)
+                catch (Exception)
                 {
-                    Console.WriteLine(e);
-                    commandExecutor.ExecuteCommand(cmdToStart);
-                    sc.Start(); 
-                    sc.WaitForStatus(ServiceControllerStatus.Running);
+                    try
+                    {
+                        Console.WriteLine("Failed to start it the first time, trying again");
+                        commandExecutor.ExecuteCommand(cmdToStart);
+                        sc.Start();
+                        sc.WaitForStatus(ServiceControllerStatus.Running);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("Tried to start the service twice and failed. \n\n" + ex, "Error");
+                    }
+                    
                 }
                  
             }
