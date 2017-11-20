@@ -8,20 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComputerLocator2.commandexecutor;
+using ComputerLocator2.table;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace ComputerLocator2
 {
     public partial class ProgramsPanel : UserControl
     {
+        private string pathToSaveFiles = Environment.ExpandEnvironmentVariables(@"%userprofile%\Documents\");
+
         public ProgramsPanel()
         {
             InitializeComponent();
             TableUpdater.programsTable = programsTable; 
         }
 
-        private void retrieveInformationButton_Click(object sender, EventArgs e)
+        private void RetrieveInformationButton_Click(object sender, EventArgs e)
         {
-            
+            programsTable.Rows.Clear();
+            programsTable.Refresh();
             
             if(ipAddressTextBox.Text.Equals(""))
             {
@@ -30,12 +36,28 @@ namespace ComputerLocator2
             }
             else
             {
-                ObtainInstalledSoftware ois = new ObtainInstalledSoftware(programsProgressBar, ipAddressTextBox.Text);
-                
+
+                ObtainInstalledSoftware ois = new ObtainInstalledSoftware();  
+                ois.onLabelUpdate += new ObtainInstalledSoftware.UpdateLabel(UpdateCurrentStatusLabel);
+                ois.GetInstalledSoftware(programsProgressBar, ipAddressTextBox.Text); 
             }
 
             
 
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            TableWriter tableWriter = new TableWriter();
+            tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Programs", programsTable);
+        }
+
+
+
+        void UpdateCurrentStatusLabel(string value)
+        {
+            currentStatusLabel.Text = value; 
+        }
+
     }
 }

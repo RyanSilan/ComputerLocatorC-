@@ -14,7 +14,8 @@ namespace ComputerLocator2.commandexecutor
     class ObtainPrinterInformation
     {
         private string computerIPAddress = null;
-        //private List<Printer> printerList = new List<Printer>; 
+        //int currentCount = 0;
+        //int prevCount = 0; 
         private readonly string cmd = "/c %windir%\\System32\\wbem\\WMIC.exe /node:";
         private readonly string printerNameCMD = " printer get name";
         private readonly string printerDriverCMD = " printer get drivername";
@@ -44,10 +45,16 @@ namespace ComputerLocator2.commandexecutor
 
             this.bw = new BackgroundWorker();
             this.bw.DoWork += new DoWorkEventHandler(GetAllPrinterInfo);
+            this.bw.RunWorkerCompleted += WorkCompleted;
 
 
             this.bw.RunWorkerAsync(); 
 
+        }
+
+        private void WorkCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Finished pulling printer list.");
         }
 
         public void GetPrinterName()
@@ -72,8 +79,7 @@ namespace ComputerLocator2.commandexecutor
                     tempPrinterList.ElementAt(i).name = tempOutput;
                     i++;
                 }
-                
-                 
+                             
             }
             
         }
@@ -144,6 +150,9 @@ namespace ComputerLocator2.commandexecutor
             {
                 TableUpdater.PopulatePrinterTable(printer.ipAddress, printer.name, printer.driver);
             }
+
+            if (PrinterList.Size() == 0)
+                System.Windows.Forms.MessageBox.Show("Failed to retrieve printer information");
 
             PrinterList.PrintList();
         }

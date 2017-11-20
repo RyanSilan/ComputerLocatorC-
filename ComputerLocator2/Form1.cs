@@ -12,12 +12,12 @@ namespace ComputerLocator2
     {
 
         private string fileName = null; 
+        private string pathToSaveFiles = Environment.ExpandEnvironmentVariables(@"%userprofile%\Documents\");
 
         public MainFrame()
         {
             InitializeComponent();
             TableUpdater.computerTable = computerTable;
-            
             
         }
         
@@ -36,52 +36,55 @@ namespace ComputerLocator2
            
         }
         
-        private void retrieveInformation_Click(object sender, EventArgs e)
+        private void RetrieveInformation_Click(object sender, EventArgs e)
         {
-            
 
-            ObtainComputerInformation oci;
-             
+            ClearTextBoxes();
+
+            ObtainComputerInformation oci;             
             List<Computer> computerList = ComputerList.GetComputerList();
-            
-        
+            int currentCount = computerList.Count; 
+
             if (ipAddressTextBox.Text.Equals(""))
             {
-                ipAddressTextBox.Text = "127.0.0.1"; 
-                oci = new ObtainComputerInformation(ipAddressTextBox.Text);
-            }
-            else
-            {
-                oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+                ipAddressTextBox.Text = "127.0.0.1";
             }
 
+            oci = new ObtainComputerInformation(ipAddressTextBox.Text);
+            oci.GetAllComputerInfoWithErrorChecking();
             
-
             Console.WriteLine("Capacity: " + computerList.Count);
 
             try
             {
-                computerNameTextBox.Text = computerList[computerList.Count - 1].GetName();
-                computerModelTextBox.Text = computerList[computerList.Count - 1].GetModel();
-                computerSNTextBox.Text = computerList[computerList.Count - 1].GetSerialNumber();
+                if (computerList.Count > currentCount)
+                {
+                    computerNameTextBox.Text = computerList[computerList.Count - 1].GetName();
+                    computerModelTextBox.Text = computerList[computerList.Count - 1].GetModel();
+                    computerSNTextBox.Text = computerList[computerList.Count - 1].GetSerialNumber();
+
+                    /*
+                    FileWriter fileWriter = new FileWriter(pathToSaveFiles, computerNameTextBox.Text);
+                    fileWriter.WriteLine(computerSNTextBox.Text);
+                    fileWriter.CloseWriter(); 
+                    */
+                }
             }
-            catch (ArgumentOutOfRangeException)
+            catch (Exception ex)
             {
-                MessageBox.Show("Cannot retrieve information");    
+                Console.WriteLine("Exception in RetrieveInformation_Click class. \n\n" + ex);
             }
-            
             
         }
 
-        //Not working, need to investigate.  
         private void ClearTextBoxes()
         {
-            computerNameTextBox.Text = null;
-            computerModelTextBox.Text = "test";
-            computerSNTextBox.Text = " ";
+            computerNameTextBox.Text = "";
+            computerModelTextBox.Text = "";
+            computerSNTextBox.Text = "";            
         }
 
-        private void ipComputerLookup_Click(object sender, EventArgs e)
+        private void IpComputerLookup_Click(object sender, EventArgs e)
         {
             massLookupPanel.Hide();
             programsPanel.Hide();
@@ -108,9 +111,6 @@ namespace ComputerLocator2
                 }
                 
             }
-
-            
-
         }
 
         private void TextFileLookup_Click(object sender, EventArgs e)
@@ -127,20 +127,18 @@ namespace ComputerLocator2
             massLookupProgressBar.Value = progress; 
         }
 
-        private void openFileButton_Click(object sender, EventArgs e)
+        private void OpenFileButton_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 
-                //MessageBox.Show(openFileDialog1.FileName);
                 fileName = openFileDialog1.FileName;
                 filePath.Text = fileName;
                 
-                                
             }
         }
 
-        private void printerLookupButton_Click(object sender, EventArgs e)
+        private void PrinterLookupButton_Click(object sender, EventArgs e)
         {
             massLookupPanel.Hide();
             panel1.Hide();
@@ -149,7 +147,7 @@ namespace ComputerLocator2
             printerPanel.Show(); 
         }
 
-        private void programsButton_Click(object sender, EventArgs e)
+        private void ProgramsButton_Click(object sender, EventArgs e)
         {
             massLookupPanel.Hide();
             printerPanel.Hide();

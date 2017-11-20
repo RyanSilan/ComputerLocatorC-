@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="commandexecutor\ObtainInstalledSoftware.cs" />
     <Compile Include="commandexecutor\ObtainPrinterInformation.cs" />
+    <Compile Include="filereader\FileWriter.cs" />
     <Compile Include="list\PrinterList.cs" />
     <Compile Include="ProgramsPanel.cs">
       <SubType>UserControl</SubType>
@@ -87,7 +88,8 @@
     <Compile Include="ProgramsPanel.Designer.cs">
       <DependentUpon>ProgramsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableUpdater.cs" />
+    <Compile Include="table\TableWriter.cs" />
+    <Compile Include="table\TableUpdater.cs" />
     <Compile Include="commandexecutor\CommandExecutor.cs" />
     <Compile Include="commandexecutor\ObtainComputerInformation.cs" />
     <Compile Include="filereader\FileReader.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="PrinterPanel.resx">
       <DependentUpon>PrinterPanel.cs</DependentUpon>

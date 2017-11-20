@@ -55,10 +55,10 @@
             this.openFileButton = new System.Windows.Forms.Button();
             this.massLookupProgressBar = new System.Windows.Forms.ProgressBar();
             this.MassLookupButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.printerPanel = new ComputerLocator2.PrinterPanel();
             this.programsPanel = new ComputerLocator2.ProgramsPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
             this.panel2.SuspendLayout();
@@ -123,7 +123,7 @@
             this.retrieveInformationButton.TabIndex = 3;
             this.retrieveInformationButton.Text = "Retrieve Information";
             this.retrieveInformationButton.UseVisualStyleBackColor = true;
-            this.retrieveInformationButton.Click += new System.EventHandler(this.retrieveInformation_Click);
+            this.retrieveInformationButton.Click += new System.EventHandler(this.RetrieveInformation_Click);
             // 
             // computerNameLabel
             // 
@@ -233,7 +233,7 @@
             this.programsButton.TabIndex = 7;
             this.programsButton.Text = "Lookup Programs";
             this.programsButton.UseVisualStyleBackColor = true;
-            this.programsButton.Click += new System.EventHandler(this.programsButton_Click);
+            this.programsButton.Click += new System.EventHandler(this.ProgramsButton_Click);
             // 
             // printerLookupButton
             // 
@@ -243,7 +243,7 @@
             this.printerLookupButton.TabIndex = 6;
             this.printerLookupButton.Text = "Lookup Printers";
             this.printerLookupButton.UseVisualStyleBackColor = true;
-            this.printerLookupButton.Click += new System.EventHandler(this.printerLookupButton_Click);
+            this.printerLookupButton.Click += new System.EventHandler(this.PrinterLookupButton_Click);
             // 
             // TextFileLookup
             // 
@@ -265,7 +265,7 @@
             this.ipComputerLookup.TabIndex = 5;
             this.ipComputerLookup.Text = "Lookup by IP";
             this.ipComputerLookup.UseVisualStyleBackColor = true;
-            this.ipComputerLookup.Click += new System.EventHandler(this.ipComputerLookup_Click);
+            this.ipComputerLookup.Click += new System.EventHandler(this.IpComputerLookup_Click);
             // 
             // massLookupPanel
             // 
@@ -316,7 +316,7 @@
             this.openFileButton.TabIndex = 2;
             this.openFileButton.Text = "Open File";
             this.openFileButton.UseVisualStyleBackColor = true;
-            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
+            this.openFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
             // massLookupProgressBar
             // 
@@ -335,6 +335,14 @@
             this.MassLookupButton.Text = "Mass Lookup";
             this.MassLookupButton.UseVisualStyleBackColor = true;
             this.MassLookupButton.Click += new System.EventHandler(this.MassLookupButton_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel3.Location = new System.Drawing.Point(257, 85);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(589, 255);
+            this.panel3.TabIndex = 6;
             // 
             // openFileDialog1
             // 
@@ -356,14 +364,6 @@
             this.programsPanel.TabIndex = 7;
             this.programsPanel.Visible = false;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel3.Location = new System.Drawing.Point(257, 85);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(589, 255);
-            this.panel3.TabIndex = 6;
-            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -376,7 +376,6 @@
             this.Controls.Add(this.printerPanel);
             this.Controls.Add(this.programsPanel);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainFrame";
             this.Text = "Computer Locator";
             this.panel1.ResumeLayout(false);

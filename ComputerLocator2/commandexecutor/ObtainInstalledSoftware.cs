@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.ServiceProcess;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Threading; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -16,45 +17,69 @@ namespace ComputerLocator2.commandexecutor
         ProgressBar oisProgressBar = null; 
         BackgroundWorker bw = new BackgroundWorker(); 
         ServiceController sc = new ServiceController("Remote Registry"); 
+
         string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
         string computerName = null;
-
         string firstPartOfCMD = @"/c %windir%\system32\sc \\";
         string secondPartOfCMDToStart = " config remoteregistry start=demand";
-        string secondPartOfCMDToStop = " config remoteregistry start=disabled"; 
-        
+        string secondPartOfCMDToStop = " config remoteregistry start=disabled";
+
+        public delegate void UpdateLabel(string value);
+        public event UpdateLabel onLabelUpdate; 
+
+        /*
         public ObtainInstalledSoftware(ProgressBar progressBar, string computer)
         {
             computerName = computer;
             oisProgressBar = progressBar;
+            progressBar.Value = 0; 
 
             bw.DoWork += GetInstalledSoftware;
             bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
             bw.WorkerReportsProgress = true;
+            bw.RunWorkerCompleted += WorkCompleted;
 
-            
+           
            bw.RunWorkerAsync();
             
             
 
+        }
+        */ 
+
+        public void GetInstalledSoftware(ProgressBar progressBar, string computer)
+        {
+            computerName = computer;
+            oisProgressBar = progressBar;
+            progressBar.Value = 0;
+
+            bw.DoWork += GetInstalledSoftware;
+            bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+            bw.WorkerReportsProgress = true;
+            bw.RunWorkerCompleted += WorkCompleted;
+
+            onLabelUpdate("Running");
+
+            bw.RunWorkerAsync();
+        }
+
+        private void WorkCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            onLabelUpdate("Not Running"); 
+            MessageBox.Show("Finished pulling software list");
         }
 
         private void GetInstalledSoftware(object sender, DoWorkEventArgs e)
         {
             int totalNumberOfKeys = 0;
             int countedKeys = 0;
-
-            try
-            {
             
-
-                Console.WriteLine("About to start the service.");
-                StartService(computerName);
-
-                using (RegistryKey key =
-                RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, computerName).OpenSubKey(registryKey))
+            StartService(computerName);
+            
+            using (RegistryKey key =
+            RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, computerName).OpenSubKey(registryKey))
             {
-                totalNumberOfKeys = key.GetSubKeyNames().Length; 
+                totalNumberOfKeys = key.GetSubKeyNames().Length;
 
                 foreach (string keyName in key.GetSubKeyNames())
                 {
@@ -100,19 +125,11 @@ namespace ComputerLocator2.commandexecutor
                     }
                 }
             }
-                
-            }
-        
-            catch (Exception ex)
-            {
-                
-                    Console.WriteLine("Failed to start the service, caught exception");
-                    MessageBox.Show("Failed to start the service! \n\n\n" + ex, "Error");
-                
-            }
-            
 
-            StopService(); 
+
+            StopService();
+            //Cursor.Current = Cursors.Default; 
+            
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -152,24 +169,19 @@ namespace ComputerLocator2.commandexecutor
                 //to start the service. 
                 catch (Exception)
                 {
-                    try
-                    {
-                        Console.WriteLine("Failed to start it the first time, trying again");
-                        commandExecutor.ExecuteCommand(cmdToStart);
-                        sc.Start();
-                        sc.WaitForStatus(ServiceControllerStatus.Running);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show("Tried to start the service twice and failed. \n\n" + ex, "Error");
-                    }
-                    
+                    Console.WriteLine("Failed to start it the first time, trying again");
+                    commandExecutor.ExecuteCommand(cmdToStart);
+                    Thread.Sleep(2000);
+                    sc.Start();
+                    sc.Refresh();
+                    sc.WaitForStatus(ServiceControllerStatus.Running);
                 }
-                 
             }
 
-                       
+            sc.Refresh(); 
+            if(sc.Status == ServiceControllerStatus.Stopped)
+                MessageBox.Show("Tried to start the service twice and failed.");
+
         }
         
         //Stops the RemoteRegistry service and then sets it to Disabled
@@ -187,5 +199,10 @@ namespace ComputerLocator2.commandexecutor
 
             Console.WriteLine("Status of the service after attempting to stop: " + sc.Status.ToString());
         }
+
+
+
+
+
     }
 }

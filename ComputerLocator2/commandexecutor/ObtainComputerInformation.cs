@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ComputerLocator2.physicaldevice;
 using ComputerLocator2.list;
-using ComputerLocator2.commandexecutor; 
+using ComputerLocator2.commandexecutor;
+using System.Diagnostics;
+using System.Reflection; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -22,13 +24,13 @@ namespace ComputerLocator2.commandexecutor
         public ObtainComputerInformation(String ipAddress){
 
             this.ipAddress = ipAddress; 
-            GetAllComputerInfo(ipAddress);            
+            //GetAllComputerInfoWithErrorChecking(ipAddress);            
                         
         }
 
-        public void GetAllComputerInfo(String ipAddress)
+        public void GetAllComputerInfoWithErrorChecking()
         {
-            this.ipAddress = ipAddress;
+            
             Console.WriteLine("This is the IP: " + ipAddress); 
             List<Task> tasks = new List<Task>(); 
 
@@ -52,7 +54,39 @@ namespace ComputerLocator2.commandexecutor
                 Computer computer = new Computer(ipAddress, name, serialNumber, model);
                 ComputerList.AddToList(computer);
                 
-               
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Could not retrieve information from: " + ipAddress);
+            }
+        }
+
+        public void GetAllComputerInfoWithoutErrorChecing()
+        {
+            
+            Console.WriteLine("This is the IP: " + ipAddress);
+            List<Task> tasks = new List<Task>();
+
+            Task task = Task.Factory.StartNew(() => serialNumber = GetSerialNumber());
+            tasks.Add(task);
+            //task.Wait(2000);
+            task.Wait();
+
+            if (serialNumber.Equals("") == false)
+            {
+                Task taskTwo = Task.Factory.StartNew(() => name = GetName());
+                Task taskThree = Task.Factory.StartNew(() => model = GetModel());
+                tasks.Add(taskTwo);
+                tasks.Add(taskThree);
+
+
+                Task.WaitAll(tasks.ToArray());
+
+                TableUpdater.PopulateComputerTable(ipAddress, name, model, serialNumber);
+
+                Computer computer = new Computer(ipAddress, name, serialNumber, model);
+                ComputerList.AddToList(computer);
+
             }
         }
 

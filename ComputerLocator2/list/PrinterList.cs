@@ -39,7 +39,8 @@ namespace ComputerLocator2.list
 
         public static void ClearList()
         {
-            printerList.Clear(); 
+            printerList.Clear();
+            printerList.Capacity = 0; 
         }
     }
 }

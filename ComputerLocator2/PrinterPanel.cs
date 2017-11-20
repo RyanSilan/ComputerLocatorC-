@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ComputerLocator2.commandexecutor; 
+using ComputerLocator2.commandexecutor;
+using ComputerLocator2.filereader;
+using ComputerLocator2.table; 
 
 namespace ComputerLocator2
 {
     public partial class PrinterPanel : UserControl
     {
-        ObtainPrinterInformation opi; 
+        ObtainPrinterInformation opi;
+        private string pathToSaveFiles = Environment.ExpandEnvironmentVariables(@"%userprofile%\Documents\");
+        
 
         public PrinterPanel()
         {
@@ -34,6 +38,12 @@ namespace ComputerLocator2
             {
                 opi = new ObtainPrinterInformation(ipAddressTextBox.Text);
             }
+        }
+
+        private void saveResultsButton_Click(object sender, EventArgs e)
+        {
+            TableWriter tableWriter = new TableWriter();
+            tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Printers", printerTable);
         }
     }
 }
