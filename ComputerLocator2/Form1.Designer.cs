@@ -44,6 +44,7 @@
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.programsButton = new System.Windows.Forms.Button();
             this.printerLookupButton = new System.Windows.Forms.Button();
             this.TextFileLookup = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             this.MassLookupButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.settingsPanel = new ComputerLocator2.SettingsPanel();
             this.printerPanel = new ComputerLocator2.PrinterPanel();
             this.programsPanel = new ComputerLocator2.ProgramsPanel();
             this.panel1.SuspendLayout();
@@ -77,49 +79,55 @@
             this.panel1.Controls.Add(this.computerServiceTagLabel);
             this.panel1.Controls.Add(this.computerModelLabel);
             this.panel1.Controls.Add(this.ipAddressLabel);
-            this.panel1.Location = new System.Drawing.Point(472, 102);
+            this.panel1.Location = new System.Drawing.Point(315, 66);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(466, 262);
+            this.panel1.Size = new System.Drawing.Size(311, 170);
             this.panel1.TabIndex = 0;
             // 
             // computerSNTextBox
             // 
-            this.computerSNTextBox.Location = new System.Drawing.Point(235, 194);
+            this.computerSNTextBox.Location = new System.Drawing.Point(157, 126);
+            this.computerSNTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.computerSNTextBox.Name = "computerSNTextBox";
             this.computerSNTextBox.ReadOnly = true;
-            this.computerSNTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerSNTextBox.Size = new System.Drawing.Size(123, 20);
             this.computerSNTextBox.TabIndex = 4;
             // 
             // computerModelTextBox
             // 
-            this.computerModelTextBox.Location = new System.Drawing.Point(235, 162);
+            this.computerModelTextBox.Location = new System.Drawing.Point(157, 105);
+            this.computerModelTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.computerModelTextBox.Name = "computerModelTextBox";
             this.computerModelTextBox.ReadOnly = true;
-            this.computerModelTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerModelTextBox.Size = new System.Drawing.Size(123, 20);
             this.computerModelTextBox.TabIndex = 4;
             // 
             // computerNameTextBox
             // 
-            this.computerNameTextBox.Location = new System.Drawing.Point(235, 131);
+            this.computerNameTextBox.Location = new System.Drawing.Point(157, 85);
+            this.computerNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.computerNameTextBox.Name = "computerNameTextBox";
             this.computerNameTextBox.ReadOnly = true;
-            this.computerNameTextBox.Size = new System.Drawing.Size(183, 26);
+            this.computerNameTextBox.Size = new System.Drawing.Size(123, 20);
             this.computerNameTextBox.TabIndex = 4;
             // 
             // ipAddressTextBox
             // 
             this.ipAddressTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.ipAddressTextBox.Location = new System.Drawing.Point(235, 36);
+            this.ipAddressTextBox.Location = new System.Drawing.Point(157, 23);
+            this.ipAddressTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.ipAddressTextBox.Name = "ipAddressTextBox";
-            this.ipAddressTextBox.Size = new System.Drawing.Size(183, 26);
+            this.ipAddressTextBox.Size = new System.Drawing.Size(123, 20);
             this.ipAddressTextBox.TabIndex = 4;
             this.ipAddressTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // retrieveInformationButton
             // 
-            this.retrieveInformationButton.Location = new System.Drawing.Point(235, 78);
+            this.retrieveInformationButton.Location = new System.Drawing.Point(157, 51);
+            this.retrieveInformationButton.Margin = new System.Windows.Forms.Padding(2);
             this.retrieveInformationButton.Name = "retrieveInformationButton";
-            this.retrieveInformationButton.Size = new System.Drawing.Size(183, 35);
+            this.retrieveInformationButton.Size = new System.Drawing.Size(122, 23);
             this.retrieveInformationButton.TabIndex = 3;
             this.retrieveInformationButton.Text = "Retrieve Information";
             this.retrieveInformationButton.UseVisualStyleBackColor = true;
@@ -128,36 +136,40 @@
             // computerNameLabel
             // 
             this.computerNameLabel.AutoSize = true;
-            this.computerNameLabel.Location = new System.Drawing.Point(82, 134);
+            this.computerNameLabel.Location = new System.Drawing.Point(55, 87);
+            this.computerNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.computerNameLabel.Name = "computerNameLabel";
-            this.computerNameLabel.Size = new System.Drawing.Size(129, 20);
+            this.computerNameLabel.Size = new System.Drawing.Size(86, 13);
             this.computerNameLabel.TabIndex = 1;
             this.computerNameLabel.Text = "Computer Name:";
             // 
             // computerServiceTagLabel
             // 
             this.computerServiceTagLabel.AutoSize = true;
-            this.computerServiceTagLabel.Location = new System.Drawing.Point(41, 197);
+            this.computerServiceTagLabel.Location = new System.Drawing.Point(27, 128);
+            this.computerServiceTagLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.computerServiceTagLabel.Name = "computerServiceTagLabel";
-            this.computerServiceTagLabel.Size = new System.Drawing.Size(170, 20);
+            this.computerServiceTagLabel.Size = new System.Drawing.Size(116, 13);
             this.computerServiceTagLabel.TabIndex = 1;
             this.computerServiceTagLabel.Text = "Computer Service Tag:";
             // 
             // computerModelLabel
             // 
             this.computerModelLabel.AutoSize = true;
-            this.computerModelLabel.Location = new System.Drawing.Point(81, 165);
+            this.computerModelLabel.Location = new System.Drawing.Point(54, 107);
+            this.computerModelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.computerModelLabel.Name = "computerModelLabel";
-            this.computerModelLabel.Size = new System.Drawing.Size(130, 20);
+            this.computerModelLabel.Size = new System.Drawing.Size(87, 13);
             this.computerModelLabel.TabIndex = 1;
             this.computerModelLabel.Text = "Computer Model:";
             // 
             // ipAddressLabel
             // 
             this.ipAddressLabel.AutoSize = true;
-            this.ipAddressLabel.Location = new System.Drawing.Point(120, 39);
+            this.ipAddressLabel.Location = new System.Drawing.Point(80, 25);
+            this.ipAddressLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ipAddressLabel.Name = "ipAddressLabel";
-            this.ipAddressLabel.Size = new System.Drawing.Size(91, 20);
+            this.ipAddressLabel.Size = new System.Drawing.Size(61, 13);
             this.ipAddressLabel.TabIndex = 1;
             this.ipAddressLabel.Text = "IP Address:";
             // 
@@ -178,13 +190,13 @@
             this.Model,
             this.SerialNumber});
             this.computerTable.GridColor = System.Drawing.Color.LightGray;
-            this.computerTable.Location = new System.Drawing.Point(151, 503);
-            this.computerTable.Margin = new System.Windows.Forms.Padding(2);
+            this.computerTable.Location = new System.Drawing.Point(101, 327);
+            this.computerTable.Margin = new System.Windows.Forms.Padding(1);
             this.computerTable.Name = "computerTable";
             this.computerTable.RowHeadersVisible = false;
             this.computerTable.RowTemplate.Height = 33;
             this.computerTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.computerTable.Size = new System.Drawing.Size(1077, 242);
+            this.computerTable.Size = new System.Drawing.Size(718, 157);
             this.computerTable.TabIndex = 3;
             // 
             // IPAddress
@@ -214,22 +226,34 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel2.Controls.Add(this.settingsButton);
             this.panel2.Controls.Add(this.programsButton);
             this.panel2.Controls.Add(this.printerLookupButton);
             this.panel2.Controls.Add(this.TextFileLookup);
             this.panel2.Controls.Add(this.ipComputerLookup);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 745);
+            this.panel2.Size = new System.Drawing.Size(100, 484);
             this.panel2.TabIndex = 4;
+            // 
+            // settingsButton
+            // 
+            this.settingsButton.Location = new System.Drawing.Point(6, 432);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(85, 40);
+            this.settingsButton.TabIndex = 8;
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // programsButton
             // 
-            this.programsButton.Location = new System.Drawing.Point(9, 378);
+            this.programsButton.Location = new System.Drawing.Point(6, 246);
+            this.programsButton.Margin = new System.Windows.Forms.Padding(2);
             this.programsButton.Name = "programsButton";
-            this.programsButton.Size = new System.Drawing.Size(128, 61);
+            this.programsButton.Size = new System.Drawing.Size(85, 40);
             this.programsButton.TabIndex = 7;
             this.programsButton.Text = "Lookup Programs";
             this.programsButton.UseVisualStyleBackColor = true;
@@ -237,9 +261,10 @@
             // 
             // printerLookupButton
             // 
-            this.printerLookupButton.Location = new System.Drawing.Point(9, 292);
+            this.printerLookupButton.Location = new System.Drawing.Point(6, 190);
+            this.printerLookupButton.Margin = new System.Windows.Forms.Padding(2);
             this.printerLookupButton.Name = "printerLookupButton";
-            this.printerLookupButton.Size = new System.Drawing.Size(128, 61);
+            this.printerLookupButton.Size = new System.Drawing.Size(85, 40);
             this.printerLookupButton.TabIndex = 6;
             this.printerLookupButton.Text = "Lookup Printers";
             this.printerLookupButton.UseVisualStyleBackColor = true;
@@ -247,10 +272,10 @@
             // 
             // TextFileLookup
             // 
-            this.TextFileLookup.Location = new System.Drawing.Point(9, 206);
-            this.TextFileLookup.Margin = new System.Windows.Forms.Padding(2);
+            this.TextFileLookup.Location = new System.Drawing.Point(6, 134);
+            this.TextFileLookup.Margin = new System.Windows.Forms.Padding(1);
             this.TextFileLookup.Name = "TextFileLookup";
-            this.TextFileLookup.Size = new System.Drawing.Size(128, 61);
+            this.TextFileLookup.Size = new System.Drawing.Size(85, 40);
             this.TextFileLookup.TabIndex = 5;
             this.TextFileLookup.Text = "Lookup by Text File";
             this.TextFileLookup.UseVisualStyleBackColor = true;
@@ -258,10 +283,10 @@
             // 
             // ipComputerLookup
             // 
-            this.ipComputerLookup.Location = new System.Drawing.Point(9, 121);
-            this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(2);
+            this.ipComputerLookup.Location = new System.Drawing.Point(6, 79);
+            this.ipComputerLookup.Margin = new System.Windows.Forms.Padding(1);
             this.ipComputerLookup.Name = "ipComputerLookup";
-            this.ipComputerLookup.Size = new System.Drawing.Size(128, 61);
+            this.ipComputerLookup.Size = new System.Drawing.Size(85, 40);
             this.ipComputerLookup.TabIndex = 5;
             this.ipComputerLookup.Text = "Lookup by IP";
             this.ipComputerLookup.UseVisualStyleBackColor = true;
@@ -276,43 +301,47 @@
             this.massLookupPanel.Controls.Add(this.massLookupProgressBar);
             this.massLookupPanel.Controls.Add(this.MassLookupButton);
             this.massLookupPanel.Controls.Add(this.panel3);
-            this.massLookupPanel.Location = new System.Drawing.Point(151, 0);
-            this.massLookupPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.massLookupPanel.Location = new System.Drawing.Point(101, 0);
+            this.massLookupPanel.Margin = new System.Windows.Forms.Padding(1);
             this.massLookupPanel.Name = "massLookupPanel";
-            this.massLookupPanel.Size = new System.Drawing.Size(1077, 504);
+            this.massLookupPanel.Size = new System.Drawing.Size(718, 328);
             this.massLookupPanel.TabIndex = 5;
             this.massLookupPanel.Visible = false;
             // 
             // filePath
             // 
-            this.filePath.Location = new System.Drawing.Point(235, 384);
+            this.filePath.Location = new System.Drawing.Point(157, 250);
+            this.filePath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(642, 36);
+            this.filePath.Size = new System.Drawing.Size(428, 23);
             this.filePath.TabIndex = 5;
             this.filePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // filePathLab
             // 
             this.filePathLab.AutoSize = true;
-            this.filePathLab.Location = new System.Drawing.Point(154, 392);
+            this.filePathLab.Location = new System.Drawing.Point(103, 255);
+            this.filePathLab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.filePathLab.Name = "filePathLab";
-            this.filePathLab.Size = new System.Drawing.Size(75, 20);
+            this.filePathLab.Size = new System.Drawing.Size(51, 13);
             this.filePathLab.TabIndex = 4;
             this.filePathLab.Text = "File Path:";
             // 
             // filePathLabel
             // 
             this.filePathLabel.AutoSize = true;
-            this.filePathLabel.Location = new System.Drawing.Point(235, 400);
+            this.filePathLabel.Location = new System.Drawing.Point(157, 260);
+            this.filePathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.filePathLabel.Name = "filePathLabel";
-            this.filePathLabel.Size = new System.Drawing.Size(0, 20);
+            this.filePathLabel.Size = new System.Drawing.Size(0, 13);
             this.filePathLabel.TabIndex = 3;
             // 
             // openFileButton
             // 
-            this.openFileButton.Location = new System.Drawing.Point(475, 439);
+            this.openFileButton.Location = new System.Drawing.Point(317, 285);
+            this.openFileButton.Margin = new System.Windows.Forms.Padding(2);
             this.openFileButton.Name = "openFileButton";
-            this.openFileButton.Size = new System.Drawing.Size(162, 36);
+            this.openFileButton.Size = new System.Drawing.Size(108, 23);
             this.openFileButton.TabIndex = 2;
             this.openFileButton.Text = "Open File";
             this.openFileButton.UseVisualStyleBackColor = true;
@@ -320,17 +349,18 @@
             // 
             // massLookupProgressBar
             // 
-            this.massLookupProgressBar.Location = new System.Drawing.Point(318, 237);
+            this.massLookupProgressBar.Location = new System.Drawing.Point(212, 154);
+            this.massLookupProgressBar.Margin = new System.Windows.Forms.Padding(2);
             this.massLookupProgressBar.Name = "massLookupProgressBar";
-            this.massLookupProgressBar.Size = new System.Drawing.Size(466, 23);
+            this.massLookupProgressBar.Size = new System.Drawing.Size(311, 15);
             this.massLookupProgressBar.TabIndex = 1;
             // 
             // MassLookupButton
             // 
-            this.MassLookupButton.Location = new System.Drawing.Point(470, 141);
-            this.MassLookupButton.Margin = new System.Windows.Forms.Padding(2);
+            this.MassLookupButton.Location = new System.Drawing.Point(313, 92);
+            this.MassLookupButton.Margin = new System.Windows.Forms.Padding(1);
             this.MassLookupButton.Name = "MassLookupButton";
-            this.MassLookupButton.Size = new System.Drawing.Size(162, 55);
+            this.MassLookupButton.Size = new System.Drawing.Size(108, 36);
             this.MassLookupButton.TabIndex = 0;
             this.MassLookupButton.Text = "Mass Lookup";
             this.MassLookupButton.UseVisualStyleBackColor = true;
@@ -339,42 +369,55 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel3.Location = new System.Drawing.Point(257, 85);
+            this.panel3.Location = new System.Drawing.Point(171, 55);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(589, 255);
+            this.panel3.Size = new System.Drawing.Size(393, 166);
             this.panel3.TabIndex = 6;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // settingsPanel
+            // 
+            this.settingsPanel.Location = new System.Drawing.Point(101, 0);
+            this.settingsPanel.Name = "settingsPanel";
+            this.settingsPanel.Size = new System.Drawing.Size(718, 486);
+            this.settingsPanel.TabIndex = 7;
+            this.settingsPanel.Visible = false;
+            // 
             // printerPanel
             // 
-            this.printerPanel.Location = new System.Drawing.Point(151, 0);
+            this.printerPanel.Location = new System.Drawing.Point(101, 0);
+            this.printerPanel.Margin = new System.Windows.Forms.Padding(1);
             this.printerPanel.Name = "printerPanel";
-            this.printerPanel.Size = new System.Drawing.Size(1077, 747);
+            this.printerPanel.Size = new System.Drawing.Size(718, 486);
             this.printerPanel.TabIndex = 6;
             this.printerPanel.Visible = false;
             // 
             // programsPanel
             // 
-            this.programsPanel.Location = new System.Drawing.Point(151, 0);
+            this.programsPanel.Location = new System.Drawing.Point(101, 0);
+            this.programsPanel.Margin = new System.Windows.Forms.Padding(1);
             this.programsPanel.Name = "programsPanel";
-            this.programsPanel.Size = new System.Drawing.Size(1077, 747);
+            this.programsPanel.Size = new System.Drawing.Size(718, 486);
             this.programsPanel.TabIndex = 7;
             this.programsPanel.Visible = false;
             // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 745);
+            this.ClientSize = new System.Drawing.Size(819, 484);
             this.Controls.Add(this.massLookupPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.computerTable);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.printerPanel);
             this.Controls.Add(this.programsPanel);
+            this.Controls.Add(this.settingsPanel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainFrame";
             this.Text = "Computer Locator";
@@ -421,6 +464,8 @@
         private ProgramsPanel programsPanel;
         private System.Windows.Forms.Button programsButton;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button settingsButton;
+        private SettingsPanel settingsPanel;
     }
 }
 

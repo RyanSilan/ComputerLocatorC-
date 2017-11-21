@@ -49,7 +49,8 @@ namespace ComputerLocator2
         private void saveButton_Click(object sender, EventArgs e)
         {
             TableWriter tableWriter = new TableWriter();
-            tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Programs", programsTable);
+            //tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Programs", programsTable);
+            tableWriter.WriteTableToFile(Environment.ExpandEnvironmentVariables(Properties.Settings.Default.FileSaveLocation), "\\" + ipAddressTextBox.Text + " - Programs", programsTable);
         }
 
 

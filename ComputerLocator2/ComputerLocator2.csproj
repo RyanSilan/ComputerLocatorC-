@@ -88,6 +88,13 @@
     <Compile Include="ProgramsPanel.Designer.cs">
       <DependentUpon>ProgramsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsPanel.Designer.cs">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="table\TableWriter.cs" />
     <Compile Include="table\TableUpdater.cs" />
     <Compile Include="commandexecutor\CommandExecutor.cs" />
@@ -129,9 +136,12 @@
     <EmbeddedResource Include="PrinterPanel.resx">
       <DependentUpon>PrinterPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SettingsPanel.resx">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ComputerLocator2_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">

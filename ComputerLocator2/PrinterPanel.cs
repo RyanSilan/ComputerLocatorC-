@@ -16,7 +16,7 @@ namespace ComputerLocator2
     public partial class PrinterPanel : UserControl
     {
         ObtainPrinterInformation opi;
-        private string pathToSaveFiles = Environment.ExpandEnvironmentVariables(@"%userprofile%\Documents\");
+        //private string pathToSaveFiles = Environment.ExpandEnvironmentVariables(@"%userprofile%\Documents\");
         
 
         public PrinterPanel()
@@ -43,7 +43,8 @@ namespace ComputerLocator2
         private void saveResultsButton_Click(object sender, EventArgs e)
         {
             TableWriter tableWriter = new TableWriter();
-            tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Printers", printerTable);
+            //tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Printers", printerTable);
+            tableWriter.WriteTableToFile(Environment.ExpandEnvironmentVariables(Properties.Settings.Default.FileSaveLocation), "\\" + ipAddressTextBox.Text + " - Printers", printerTable);
         }
     }
 }

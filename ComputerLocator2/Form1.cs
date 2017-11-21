@@ -88,6 +88,7 @@ namespace ComputerLocator2
         {
             massLookupPanel.Hide();
             programsPanel.Hide();
+            settingsPanel.Hide();
             printerPanel.Hide();
             panel1.Show();
             computerTable.Show(); 
@@ -118,6 +119,7 @@ namespace ComputerLocator2
             panel1.Hide();
             printerPanel.Hide();
             programsPanel.Hide();
+            settingsPanel.Hide();
             massLookupPanel.Show();
             computerTable.Show(); 
         }
@@ -144,6 +146,7 @@ namespace ComputerLocator2
             panel1.Hide();
             computerTable.Hide();
             programsPanel.Hide();
+            settingsPanel.Hide();
             printerPanel.Show(); 
         }
 
@@ -153,7 +156,19 @@ namespace ComputerLocator2
             printerPanel.Hide();
             panel1.Hide();
             computerTable.Hide();
+            settingsPanel.Hide();
             programsPanel.Show();
+            
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            massLookupPanel.Hide();
+            printerPanel.Hide();
+            panel1.Hide();
+            computerTable.Hide();
+            programsPanel.Hide();
+            settingsPanel.Show();
         }
     }
 }
