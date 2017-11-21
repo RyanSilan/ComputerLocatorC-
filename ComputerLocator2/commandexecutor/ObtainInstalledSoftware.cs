@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.ServiceProcess;
 using System.ComponentModel;
 using System.Windows.Forms;
-using System.Threading;  
+using System.Threading;
+using ComputerLocator2.list; 
 
 namespace ComputerLocator2.commandexecutor
 {
@@ -16,7 +17,7 @@ namespace ComputerLocator2.commandexecutor
         CommandExecutor commandExecutor = new CommandExecutor(); 
         ProgressBar oisProgressBar = null; 
         BackgroundWorker bw = new BackgroundWorker(); 
-        ServiceController sc = new ServiceController("Remote Registry"); 
+        ServiceController sc = new ServiceController("Remote Registry");
 
         string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
         string computerName = null;
@@ -25,7 +26,7 @@ namespace ComputerLocator2.commandexecutor
         string secondPartOfCMDToStop = " config remoteregistry start=disabled";
 
         public delegate void UpdateLabel(string value);
-        public event UpdateLabel onLabelUpdate; 
+        public event UpdateLabel OnLabelUpdate; 
 
         /*
         public ObtainInstalledSoftware(ProgressBar progressBar, string computer)
@@ -58,19 +59,21 @@ namespace ComputerLocator2.commandexecutor
             bw.WorkerReportsProgress = true;
             bw.RunWorkerCompleted += WorkCompleted;
 
-            onLabelUpdate("Running");
+            OnLabelUpdate("Running");
 
             bw.RunWorkerAsync();
         }
 
         private void WorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            onLabelUpdate("Not Running"); 
+            OnLabelUpdate("Not Running"); 
             MessageBox.Show("Finished pulling software list");
         }
 
+        /*
         private void GetInstalledSoftware(object sender, DoWorkEventArgs e)
         {
+            
             int totalNumberOfKeys = 0;
             int countedKeys = 0;
             
@@ -128,9 +131,10 @@ namespace ComputerLocator2.commandexecutor
 
 
             StopService();
-            //Cursor.Current = Cursors.Default; 
             
         }
+
+    */
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -200,9 +204,73 @@ namespace ComputerLocator2.commandexecutor
             Console.WriteLine("Status of the service after attempting to stop: " + sc.Status.ToString());
         }
 
+        private void GetInstalledSoftware(object sender, DoWorkEventArgs e)
+        {
 
+            List<string> programList = new List<string>(); 
+             
+            int totalNumberOfKeys = 0;
+            int countedKeys = 0;
 
+            StartService(computerName);
 
+            using (RegistryKey key =
+            RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, computerName).OpenSubKey(registryKey))
+            {
+                totalNumberOfKeys = key.GetSubKeyNames().Length;
 
+                foreach (string keyName in key.GetSubKeyNames())
+                {
+                    using (RegistryKey subKey = key.OpenSubKey(keyName))
+                    {
+                        if (subKey.GetValue("DisplayName") != null)
+                        {
+                            //TableUpdater.PopulateProgramsTable(subKey.GetValue("DisplayName").ToString());
+                            programList.Add(subKey.GetValue("DisplayName").ToString()); 
+                            ++countedKeys;
+                            int progress = (countedKeys * 100) / totalNumberOfKeys;
+                            bw.ReportProgress(progress);
+
+                        }
+                        else
+                        {
+                            ++countedKeys;
+                            int progress = (countedKeys * 100) / totalNumberOfKeys;
+                            bw.ReportProgress(progress);
+                        }
+
+                    }
+                }
+            }
+
+            foreach (string value in programList)
+            {
+                if (!(value.Contains("Security Update")) &&
+                            !(value.Contains("Adobe Flash")) &&
+                            !(value.Contains("Dell")) &&
+                            !(value.Contains("Java")) &&
+                            !(value.Contains("Google Update")) &&
+                            !(value.Contains("Apple")) &&
+                            !(value.Contains("Computrace")) &&
+                            !(value.Contains("Microsoft redistributable")) &&
+                            !(value.Contains("Cisco AnyConnect")) &&
+                            !(value.Contains("Update for")) &&
+                            !(value.Contains("IBM i Access")) &&
+                            !(value.Contains("Service Pack")) &&
+                            !(value.Contains("System Requirement")) &&
+                            !(value.Contains("Absolute Software")) &&
+                            !(value.Contains("Adobe Refresh")) &&
+                            !(value.Contains("Intel(R)")) &&
+                            !(value.Contains("Proof")) &&
+                            !(value.Contains("O2Micro")) &&
+                            !(value.Contains("Realtek")) &&
+                            !(value.Contains("ST Microelectronics")) &&
+                            !(value.Contains("MSXML")))
+                {
+                    TableUpdater.PopulateProgramsTable(value);                  
+                }
+            }
+            StopService();
+        }
     }
 }

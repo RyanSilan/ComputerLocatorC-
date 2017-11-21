@@ -36,9 +36,8 @@ namespace ComputerLocator2
             }
             else
             {
-
                 ObtainInstalledSoftware ois = new ObtainInstalledSoftware();  
-                ois.onLabelUpdate += new ObtainInstalledSoftware.UpdateLabel(UpdateCurrentStatusLabel);
+                ois.OnLabelUpdate += new ObtainInstalledSoftware.UpdateLabel(UpdateCurrentStatusLabel);
                 ois.GetInstalledSoftware(programsProgressBar, ipAddressTextBox.Text); 
             }
 

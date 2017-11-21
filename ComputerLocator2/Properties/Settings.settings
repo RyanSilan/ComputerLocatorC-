@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FileSaveLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%userprofile%\Documents\</Value>
+      <Value Profile="(Default)">%userprofile%\Documents</Value>
     </Setting>
   </Settings>
 </SettingsFile>

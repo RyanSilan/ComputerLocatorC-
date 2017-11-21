@@ -25,7 +25,7 @@ namespace ComputerLocator2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%userprofile%\\Documents\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%userprofile%\\Documents")]
         public string FileSaveLocation {
             get {
                 return ((string)(this["FileSaveLocation"]));
