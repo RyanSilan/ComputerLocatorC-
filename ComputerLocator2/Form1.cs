@@ -4,7 +4,8 @@ using System.Windows.Forms;
 using ComputerLocator2.commandexecutor;
 using ComputerLocator2.list;
 using ComputerLocator2.physicaldevice; 
-using ComputerLocator2.filereader; 
+using ComputerLocator2.filereader;
+using ComputerLocator2.table;
 
 namespace ComputerLocator2
 {
@@ -169,6 +170,13 @@ namespace ComputerLocator2
             computerTable.Hide();
             programsPanel.Hide();
             settingsPanel.Show();
+        }
+
+        private void massSaveButton_Click(object sender, EventArgs e)
+        {
+            TableWriter tableWriter = new TableWriter();
+            //tableWriter.WriteTableToFile(pathToSaveFiles, ipAddressTextBox.Text + " - Printers", printerTable);
+            tableWriter.WriteTableToFile(Environment.ExpandEnvironmentVariables(Properties.Settings.Default.FileSaveLocation), "\\" + "MassLookup Results", computerTable);
         }
     }
 }

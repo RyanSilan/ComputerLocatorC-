@@ -61,10 +61,12 @@
             this.settingsPanel = new ComputerLocator2.SettingsPanel();
             this.printerPanel = new ComputerLocator2.PrinterPanel();
             this.programsPanel = new ComputerLocator2.ProgramsPanel();
+            this.massSaveButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerTable)).BeginInit();
             this.panel2.SuspendLayout();
             this.massLookupPanel.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -349,7 +351,7 @@
             // 
             // massLookupProgressBar
             // 
-            this.massLookupProgressBar.Location = new System.Drawing.Point(212, 154);
+            this.massLookupProgressBar.Location = new System.Drawing.Point(212, 181);
             this.massLookupProgressBar.Margin = new System.Windows.Forms.Padding(2);
             this.massLookupProgressBar.Name = "massLookupProgressBar";
             this.massLookupProgressBar.Size = new System.Drawing.Size(311, 15);
@@ -369,6 +371,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel3.Controls.Add(this.massSaveButton);
             this.panel3.Location = new System.Drawing.Point(171, 55);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
@@ -405,6 +408,16 @@
             this.programsPanel.TabIndex = 7;
             this.programsPanel.Visible = false;
             // 
+            // massSaveButton
+            // 
+            this.massSaveButton.Location = new System.Drawing.Point(142, 92);
+            this.massSaveButton.Name = "massSaveButton";
+            this.massSaveButton.Size = new System.Drawing.Size(108, 26);
+            this.massSaveButton.TabIndex = 0;
+            this.massSaveButton.Text = "Save Results";
+            this.massSaveButton.UseVisualStyleBackColor = true;
+            this.massSaveButton.Click += new System.EventHandler(this.massSaveButton_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,6 +440,7 @@
             this.panel2.ResumeLayout(false);
             this.massLookupPanel.ResumeLayout(false);
             this.massLookupPanel.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -466,6 +480,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button settingsButton;
         private SettingsPanel settingsPanel;
+        private System.Windows.Forms.Button massSaveButton;
     }
 }
 
