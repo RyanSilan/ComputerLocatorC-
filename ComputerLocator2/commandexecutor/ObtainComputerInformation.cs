@@ -5,12 +5,15 @@ using ComputerLocator2.physicaldevice;
 using ComputerLocator2.list;
 using ComputerLocator2.commandexecutor;
 using System.Diagnostics;
-using System.Reflection; 
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace ComputerLocator2.commandexecutor
 {
     class ObtainComputerInformation
     {
+        public static Label currentStatusLabel { get; set; }
+
         private readonly string cmd = "/c %windir%\\System32\\wbem\\WMIC.exe /node:";
         private readonly string serialNumberCommand = " bios get serialnumber";
         private readonly string modelNumberCommand = " computersystem get model";
@@ -57,11 +60,12 @@ namespace ComputerLocator2.commandexecutor
             }
             else
             {
+                currentStatusLabel.Text = "Failed"; 
                 System.Windows.Forms.MessageBox.Show("Could not retrieve information from: " + ipAddress);
             }
         }
 
-        public void GetAllComputerInfoWithoutErrorChecing()
+        public void GetAllComputerInfoWithoutErrorChecking()
         {
             
             Console.WriteLine("This is the IP: " + ipAddress);

@@ -69,7 +69,7 @@ namespace ComputerLocator2.filereader
             {
                 
                 ObtainComputerInformation oci = new ObtainComputerInformation(ipAddress);
-                oci.GetAllComputerInfoWithoutErrorChecing();
+                oci.GetAllComputerInfoWithoutErrorChecking();
 
                 ++computersCounted;
                 int precentProgress = (computersCounted * 100) / computerCount;

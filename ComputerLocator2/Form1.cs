@@ -42,7 +42,11 @@ namespace ComputerLocator2
 
             ClearTextBoxes();
 
-            ObtainComputerInformation oci;             
+            currentStatusLabel.Text = "Running"; 
+                                           
+            ObtainComputerInformation oci;
+            ObtainComputerInformation.currentStatusLabel = currentStatusLabel; 
+
             List<Computer> computerList = ComputerList.GetComputerList();
             int currentCount = computerList.Count; 
 
@@ -64,6 +68,7 @@ namespace ComputerLocator2
                     computerModelTextBox.Text = computerList[computerList.Count - 1].GetModel();
                     computerSNTextBox.Text = computerList[computerList.Count - 1].GetSerialNumber();
 
+                    currentStatusLabel.Text = "Success"; 
                     /*
                     FileWriter fileWriter = new FileWriter(pathToSaveFiles, computerNameTextBox.Text);
                     fileWriter.WriteLine(computerSNTextBox.Text);
@@ -91,7 +96,7 @@ namespace ComputerLocator2
             programsPanel.Hide();
             settingsPanel.Hide();
             printerPanel.Hide();
-            panel1.Show();
+            individualComputerLookupPanel.Show();
             computerTable.Show(); 
         }
 
@@ -117,7 +122,7 @@ namespace ComputerLocator2
 
         private void TextFileLookup_Click(object sender, EventArgs e)
         {
-            panel1.Hide();
+            individualComputerLookupPanel.Hide();
             printerPanel.Hide();
             programsPanel.Hide();
             settingsPanel.Hide();
@@ -144,7 +149,7 @@ namespace ComputerLocator2
         private void PrinterLookupButton_Click(object sender, EventArgs e)
         {
             massLookupPanel.Hide();
-            panel1.Hide();
+            individualComputerLookupPanel.Hide();
             computerTable.Hide();
             programsPanel.Hide();
             settingsPanel.Hide();
@@ -155,7 +160,7 @@ namespace ComputerLocator2
         {
             massLookupPanel.Hide();
             printerPanel.Hide();
-            panel1.Hide();
+            individualComputerLookupPanel.Hide();
             computerTable.Hide();
             settingsPanel.Hide();
             programsPanel.Show();
@@ -166,7 +171,7 @@ namespace ComputerLocator2
         {
             massLookupPanel.Hide();
             printerPanel.Hide();
-            panel1.Hide();
+            individualComputerLookupPanel.Hide();
             computerTable.Hide();
             programsPanel.Hide();
             settingsPanel.Show();

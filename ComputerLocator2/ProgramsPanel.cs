@@ -59,5 +59,30 @@ namespace ComputerLocator2
             currentStatusLabel.Text = value; 
         }
 
+        private void stopRemoteRegistryButton_Click(object sender, EventArgs e)
+        {
+            if (ipAddressTextBox.Text.Equals(""))
+            {
+                MessageBox.Show("Please supply IP Address");
+            }
+            else
+            {
+                ObtainInstalledSoftware ois = new ObtainInstalledSoftware();
+                ois.StopService(ipAddressTextBox.Text); 
+            }
+        }
+
+        private void startRemoteRegistryButton_Click(object sender, EventArgs e)
+        {
+            if (ipAddressTextBox.Text.Equals(""))
+            {
+                MessageBox.Show("Please supply IP Address");
+            }
+            else
+            {
+                ObtainInstalledSoftware ois = new ObtainInstalledSoftware();
+                ois.StartService(ipAddressTextBox.Text);
+            }
+        }
     }
 }

@@ -34,17 +34,14 @@ namespace ComputerLocator2.commandexecutor
             computerName = computer;
             oisProgressBar = progressBar;
             progressBar.Value = 0; 
-
+            
             bw.DoWork += GetInstalledSoftware;
             bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
             bw.WorkerReportsProgress = true;
             bw.RunWorkerCompleted += WorkCompleted;
 
-           
-           bw.RunWorkerAsync();
+            bw.RunWorkerAsync();
             
-            
-
         }
         */ 
 
@@ -145,7 +142,7 @@ namespace ComputerLocator2.commandexecutor
 
         //Used to start the RemoteRegistry service that is 
         //required to be running in order to query registry
-        private void StartService(string computerName)
+        public void StartService(string computerName)
         {
             string cmdToStart = firstPartOfCMD + computerName + secondPartOfCMDToStart;
             sc.MachineName = computerName;
@@ -189,9 +186,10 @@ namespace ComputerLocator2.commandexecutor
         }
         
         //Stops the RemoteRegistry service and then sets it to Disabled
-        private void StopService()
+        public void StopService(string computerName)
         {
             string cmdToStop = firstPartOfCMD + computerName + secondPartOfCMDToStop;
+            sc.MachineName = computerName;
 
             Console.WriteLine("Status of the service when attempting to stop: " + sc.Status.ToString());
 
@@ -270,7 +268,7 @@ namespace ComputerLocator2.commandexecutor
                     TableUpdater.PopulateProgramsTable(value);                  
                 }
             }
-            StopService();
+            StopService(computerName);
         }
     }
 }
