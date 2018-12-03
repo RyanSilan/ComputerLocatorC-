@@ -12,7 +12,7 @@ namespace ComputerLocator2.filereader
         string filePath = null;
         string fileName = null;
         StreamWriter writer = null;
-        
+        //test
         public FileWriter(string filePath, string fileName)
         {
             this.filePath = filePath;
